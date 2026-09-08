@@ -11,18 +11,102 @@
   "trust_state": "not-evaluated",
   "skill_count": 12,
   "skills": [
-    {"id":"crypto-ta-analyzer","path":"crypto-ta-analyzer","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"data-storyteller","path":"data-storyteller","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"document-converter-suite","path":"document-converter-suite","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"financial-calculator","path":"financial-calculator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"geo-toolkit","path":"geo-toolkit","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"image-enhancement-suite","path":"image-enhancement-suite","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"media-toolkit","path":"media-toolkit","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"mcp-builder","path":"mcp-builder","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"ocr-document-processor","path":"ocr-document-processor","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"qr-code-generator","path":"qr-code-generator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"skill-creator","path":"skill-creator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
-    {"id":"svg-precision-skill","path":"svg-precision-skill","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false}
+    {
+      "id": "crypto-ta-analyzer",
+      "path": "crypto-ta-analyzer",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "data-storyteller",
+      "path": "data-storyteller",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "document-converter-suite",
+      "path": "document-converter-suite",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "financial-calculator",
+      "path": "financial-calculator",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "geo-toolkit",
+      "path": "geo-toolkit",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "image-enhancement-suite",
+      "path": "image-enhancement-suite",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "media-toolkit",
+      "path": "media-toolkit",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "mcp-builder",
+      "path": "mcp-builder",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "ocr-document-processor",
+      "path": "ocr-document-processor",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "qr-code-generator",
+      "path": "qr-code-generator",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "skill-creator",
+      "path": "skill-creator",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    },
+    {
+      "id": "svg-precision-skill",
+      "path": "svg-precision-skill",
+      "has_skill_md": true,
+      "openai_yaml_shape": "legacy-flat-interface",
+      "source_owned": true,
+      "copied_into_cs": false
+    }
   ],
   "warnings": [
     "license-unresolved",
