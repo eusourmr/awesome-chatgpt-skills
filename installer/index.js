@@ -6,6 +6,7 @@ import path from 'node:path';
 import process from 'node:process';
 import readline from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
+import { createZip } from './zip.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(here, '..');
@@ -25,7 +26,7 @@ function positional(index) {
   const values = args.slice(1).filter((x, i, all) => {
     if (x.startsWith('-')) return false;
     const prev = all[i - 1];
-    return !['--bundle', '--profile', '--tool', '--target', '--scope', '--config'].includes(prev);
+    return !['--bundle', '--profile', '--skill', '--tool', '--target', '--scope', '--config'].includes(prev);
   });
   return values[index];
 }
@@ -92,7 +93,7 @@ const adapters = {
     label: 'ChatGPT upload export', mode: 'export',
     target: () => path.join(process.cwd(), '.chatgpt-skills', 'export', 'skills'),
     config: (target) => path.join(path.dirname(target), 'chatgpt-skills-export.json'),
-    note: 'Prepara arquivos para upload manual. Isto não instala diretamente no ChatGPT Web.'
+    note: 'Prepara a pasta legível e um ZIP determinístico por skill para upload. Isto não instala diretamente no ChatGPT Web.'
   }
 };
 
@@ -232,7 +233,7 @@ if (command === 'doctor') {
 
   const targetRoot = config.target ? path.resolve(config.target) : null;
   if (!targetRoot) issue('destino ausente na configuração'); else ok(`destino ${targetRoot}`);
-  if (config.mode === 'export') warn('este artefato foi apenas preparado para upload; doctor não confirma instalação no ChatGPT Web');
+  if (config.mode === 'export') warn('este artefato foi preparado para upload; doctor confirma integridade local, não instalação no ChatGPT Web');
 
   if (targetRoot && Array.isArray(config.enabled_skills)) {
     for (const skillId of config.enabled_skills) {
@@ -253,6 +254,19 @@ if (command === 'doctor') {
       if (healthy) ok(`${skillId}: arquivos íntegros`);
     }
   }
+
+  if (config.mode === 'export' && config.upload_packages) {
+    for (const [skillId, upload] of Object.entries(config.upload_packages)) {
+      try {
+        const packageBytes = await readFile(upload.path);
+        if (digest(packageBytes) !== upload.sha256) issue(`${skillId}: ZIP de upload modificado ou corrompido`);
+        else ok(`${skillId}: ZIP de upload íntegro`);
+      } catch (error) {
+        issue(`${skillId}: ZIP de upload ausente ou ilegível (${error.code || error.message})`);
+      }
+    }
+  }
+
   if (issues === 0) { console.log('\nSaúde da instalação: OK'); process.exit(0); }
   console.log(`\nSaúde da instalação: ${issues} problema(s) encontrado(s)`);
   process.exit(1);
@@ -268,11 +282,17 @@ const rl = yes ? null : readline.createInterface({ input: process.stdin, output:
 try {
   const requestedBundle = valueOf('--bundle');
   const profileBundle = valueOf('--profile');
-  const bundle = requestedBundle || profileBundle || (yes ? 'developer' : await choose(rl, 'Qual é o seu perfil?', profiles));
+  const requestedSkill = valueOf('--skill');
+  if (requestedSkill && (requestedBundle || profileBundle)) throw new Error('use --skill ou --bundle/--profile, não ambos');
+
+  const bundle = requestedSkill ? null : (requestedBundle || profileBundle || (yes ? 'developer' : await choose(rl, 'Qual é o seu perfil?', profiles)));
+  const selectedSkills = requestedSkill ? [requestedSkill] : manifest.bundles[bundle];
+  if (requestedSkill && !manifest.skills[requestedSkill]) throw new Error(`Skill inexistente: ${requestedSkill}`);
+  if (!requestedSkill && !selectedSkills) throw new Error(`Bundle inexistente: ${bundle}`);
+
   const tool = valueOf('--tool') || (yes ? 'codex-cli' : await choose(rl, 'Qual destino você usa?', tools));
   const scope = valueOf('--scope') || 'project';
   if (!['project', 'user'].includes(scope)) throw new Error('scope deve ser project ou user');
-  if (!manifest.bundles[bundle]) throw new Error(`Bundle inexistente: ${bundle}`);
   const adapter = adapters[tool];
   if (!adapter) throw new Error(`Destino inexistente: ${tool}`);
   if (tool === 'chatgpt-web' && scope === 'user' && !valueOf('--target')) throw new Error('ChatGPT export não possui instalação global; use --scope project ou --target');
@@ -282,11 +302,15 @@ try {
   await mkdir(targetRoot, { recursive: true });
   const installed = [];
   const fileHashes = {};
-  for (const skillId of manifest.bundles[bundle]) {
+  const uploadPackages = {};
+
+  for (const skillId of selectedSkills) {
     const skill = manifest.skills[skillId];
     if (!skill) throw new Error(`Manifesto inconsistente: ${skillId}`);
     const targetSkill = path.join(targetRoot, skillId);
     fileHashes[skillId] = {};
+    const zipEntries = [];
+
     for (const rel of skill.files) {
       const source = packagedFile(skill.path, rel);
       const data = await readFile(source);
@@ -294,24 +318,39 @@ try {
       await mkdir(path.dirname(out), { recursive: true });
       await writeFile(out, data);
       fileHashes[skillId][rel] = digest(data);
+      zipEntries.push({ name: `${skillId}/${rel.replaceAll('\\', '/')}`, data });
     }
+
+    if (adapter.mode === 'export') {
+      const packageDir = path.join(path.dirname(targetRoot), 'packages');
+      await mkdir(packageDir, { recursive: true });
+      const zipBytes = createZip(zipEntries);
+      const zipPath = path.join(packageDir, `${skillId}.zip`);
+      await writeFile(zipPath, zipBytes);
+      uploadPackages[skillId] = { format: 'zip', path: zipPath, sha256: digest(zipBytes) };
+    }
+
     installed.push(skillId);
     console.log(`✓ ${skillId}`);
   }
+
   await mkdir(path.dirname(configPath), { recursive: true });
   const config = {
     schema_version: 2,
     package: packageMeta.name,
     package_version: packageMeta.version,
     distribution: manifest.distribution,
+    selection: requestedSkill ? { type: 'skill', id: requestedSkill } : { type: 'bundle', id: bundle },
     bundle,
+    skill: requestedSkill || null,
     adapter: tool,
     mode: adapter.mode,
     scope,
     installed_at: new Date().toISOString(),
     target: targetRoot,
     enabled_skills: installed,
-    file_hashes: fileHashes
+    file_hashes: fileHashes,
+    upload_packages: adapter.mode === 'export' ? uploadPackages : undefined
   };
   await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
   console.log(`\n${adapter.mode === 'export' ? 'Exportação' : 'Instalação'} concluída: ${installed.length} skills`);
@@ -321,7 +360,9 @@ try {
   console.log(`Adapter: ${adapter.label}`);
   console.log(adapter.note);
   if (adapter.mode === 'export') {
-    console.log('Próximo passo: revise os arquivos e faça o upload pela interface de Skills do ChatGPT.');
+    console.log('Pacotes prontos para upload:');
+    for (const [skillId, upload] of Object.entries(uploadPackages)) console.log(`- ${skillId}: ${upload.path} (sha256 ${upload.sha256})`);
+    console.log('Próximo passo: onde Skills estiverem disponíveis, abra Plugins > Skills > Create > Upload from your computer e carregue um ZIP por skill.');
   }
 } catch (error) {
   console.error(`Erro: ${error.message}`);
