@@ -17,9 +17,9 @@
     "NOTICE"
   ],
   "scripts": {
-    "validate": "python scripts/catalog.py --check && python scripts/validate_catalog.py && node scripts/security-check.mjs && node scripts/validate-execution-model.mjs && node scripts/validate-external-sources.mjs && node --check scripts/ingest-github-repo.mjs && node --check installer/zip.js && node --check installer/index.js && python -m unittest discover -s tests",
+    "validate": "python scripts/catalog.py --check && python scripts/validate_catalog.py && node scripts/security-check.mjs && node scripts/validate-execution-model.mjs && node scripts/validate-external-sources.mjs && node scripts/generate-navigator-snapshot.mjs --check && node scripts/validate-navigator.mjs && node --check scripts/ingest-github-repo.mjs && node --check installer/zip.js && node --check installer/index.js && python -m unittest discover -s tests",
     "pack:check": "npm pack --dry-run --json",
-    "prepublish:check": "node scripts/prepublish-check.mjs && node scripts/security-check.mjs && node scripts/validate-execution-model.mjs && node scripts/validate-external-sources.mjs && node --check scripts/ingest-github-repo.mjs && node --check installer/zip.js && node --check installer/index.js",
+    "prepublish:check": "node scripts/prepublish-check.mjs && node scripts/security-check.mjs && node scripts/validate-execution-model.mjs && node scripts/validate-external-sources.mjs && node scripts/generate-navigator-snapshot.mjs --check && node scripts/validate-navigator.mjs && node --check scripts/ingest-github-repo.mjs && node --check installer/zip.js && node --check installer/index.js",
     "prepublishOnly": "npm run prepublish:check"
   },
   "engines": {
