@@ -2,6 +2,31 @@
 
 All notable changes to ChatGPT Skills are documented here.
 
+## 0.4.0 — 2026-09-08
+
+### Added
+
+- `chatgpt-skills inspect <skill-id>` with evidence-backed purpose, provenance, permissions, compatibility, security notes and known gaps.
+- Evidence Cards for all 12 bundled skills in `trust/skills.json`.
+- Security Gate v1 with blocking rules for dangerous remote-shell, destructive-root and explicit secret-exfiltration patterns, while reporting non-blocking risk signals separately.
+- Project and user-scope target adapters for Codex, Cursor and portable `.agents/skills` installations.
+- ChatGPT upload-export mode that explicitly avoids claiming direct installation into ChatGPT Web.
+- Per-file SHA-256 hashes in installation configuration so `doctor` can detect corruption independently of the verifier package version.
+- Deliberately unsafe CI fixture proving the Security Gate blocks known-dangerous patterns.
+
+### Changed
+
+- Installer manifest moves to schema 3 and records supported target semantics plus the trust-data location.
+- Installation config moves to schema 2 with adapter, mode, scope and recorded file hashes.
+- Package validation now requires complete Evidence Cards and exercises every filesystem adapter from the packed npm tarball.
+- Package positioning shifts from a generic curated installer toward an evidence-backed trust, inspection and compatibility layer.
+
+### Integrity
+
+- Evidence Cards are not safety guarantees and use a conservative `conditional` recommendation until stronger task-level end-to-end evidence exists.
+- ChatGPT is treated as export/upload preparation, not as a local filesystem installation target.
+- App/MCP/action-provider dependencies are modeled as a distinct future trust surface rather than being conflated with the skill instruction file itself.
+
 ## 0.3.1 — 2026-09-08
 
 ### Fixed
