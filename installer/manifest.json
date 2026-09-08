@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "repository": "eusourmr/awesome-chatgpt-skills",
+  "repository": "eusourmr/chatgpt-skills",
   "branch": "main",
   "skills": {
     "openai-agents-sdk-builder": {"path":"skills/featured/openai-agents-sdk-builder","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_agent.py"]},
