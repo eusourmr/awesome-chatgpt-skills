@@ -1,0 +1,4 @@
+interface:
+  display_name: "Catalog Curator"
+  short_description: "Review and curate ChatGPT skills"
+  default_prompt: "Use $catalog-curator to review this submission for the Awesome ChatGPT Skills catalog."

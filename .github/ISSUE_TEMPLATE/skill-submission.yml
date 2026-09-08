@@ -1,0 +1,72 @@
+name: Suggest a skill or plugin
+description: Propose a source for the ChatGPT and Codex catalog
+title: "[Submission]: "
+labels:
+  - submission
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. Please provide evidence rather than marketing copy.
+        Obrigado pela sugestão. Envie evidências, não apenas texto publicitário.
+  - type: input
+    id: source
+    attributes:
+      label: Canonical source URL
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Package type
+      options:
+        - Standalone skill
+        - Plugin with skills
+        - Skill collection
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Real-world use case
+      description: What repeatable task does it complete, and for whom?
+    validations:
+      required: true
+  - type: checkboxes
+    id: surfaces
+    attributes:
+      label: Supported surfaces
+      description: Select only surfaces supported by source evidence.
+      options:
+        - label: ChatGPT Chat
+        - label: ChatGPT Work
+        - label: Codex
+  - type: input
+    id: license
+    attributes:
+      label: License and evidence URL
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Dependencies, permissions, and safety notes
+    validations:
+      required: true
+  - type: checkboxes
+    id: declaration
+    attributes:
+      label: Declaration
+      options:
+        - label: I searched for duplicates and inspected the public source.
+          required: true
+        - label: I disclosed below if I own, maintain, or represent this project.
+          required: true
+  - type: textarea
+    id: affiliation
+    attributes:
+      label: Affiliation
+      placeholder: No affiliation, or explain your relationship to the project.
+    validations:
+      required: true
