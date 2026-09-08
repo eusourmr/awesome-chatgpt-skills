@@ -19,7 +19,7 @@ jobs:
       - name: Replace legacy repository slug
         shell: bash
         run: |
-          git grep -Il 'awesome-chatgpt-skills' | xargs -r sed -i 's/awesome-chatgpt-skills/chatgpt-skills/g'
+          git grep -Il 'awesome-chatgpt-skills' -- ':!.github/workflows/finish-rename.yml' | xargs -r sed -i 's/awesome-chatgpt-skills/chatgpt-skills/g'
           python scripts/catalog.py --write
           python scripts/catalog.py --check
           python scripts/validate_catalog.py
