@@ -1,7 +1,6 @@
-# Awesome ChatGPT Skills
+# ChatGPT Skills
 
-[![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
-[![Validate catalog](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml)
+[![Validate catalog](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Curation](https://img.shields.io/badge/curation-human--governed-2f6f4e.svg)](CONTRIBUTING.md)
 [![Catalog](https://img.shields.io/badge/catalog-30%20skills-4c1.svg)](PROGRESS.md)
@@ -42,13 +41,13 @@ The quality catalog currently tracks **30 skills**: **12 OpenAI-published**, **1
 Interactive install:
 
 ```bash
-npx awesome-chatgpt-skills install
+npx chatgpt-skills install
 ```
 
 The npm package must be published before that exact command resolves from the npm registry. Until then, run the repository package directly:
 
 ```bash
-npx github:eusourmr/awesome-chatgpt-skills install
+npx github:eusourmr/chatgpt-skills install
 ```
 
 Choose a profile and tool, and the installer writes the recommended skills to `.chatgpt/skills/` plus `.chatgpt/skills-config.json`.
@@ -56,7 +55,7 @@ Choose a profile and tool, and the installer writes the recommended skills to `.
 Install a bundle directly:
 
 ```bash
-npx awesome-chatgpt-skills install --bundle openai-ecosystem
+npx chatgpt-skills install --bundle openai-ecosystem
 ```
 
 See all curated packages in [`BUNDLES.md`](BUNDLES.md).
