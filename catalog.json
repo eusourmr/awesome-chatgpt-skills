@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "generated_policy": {
     "status_semantics": {
       "official": "Published by OpenAI and source-verified against an OpenAI-controlled repository.",
@@ -27,7 +27,9 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/build-ios-apps"
     },
@@ -40,7 +42,9 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/build-macos-apps"
     },
@@ -53,7 +57,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/build-web-apps"
     },
@@ -66,7 +73,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex", "Agents SDK"],
+      "compatibility": [
+        "Codex",
+        "Agents SDK"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/openai-developers"
     },
@@ -79,7 +89,9 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/plugin-eval"
     },
@@ -92,7 +104,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/build-web-data-visualization"
     },
@@ -105,7 +120,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/data-analytics"
     },
@@ -118,7 +136,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/life-science-research"
     },
@@ -131,7 +152,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/creative-production"
     },
@@ -144,7 +168,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/product-design"
     },
@@ -157,7 +184,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/google-drive"
     },
@@ -170,7 +200,9 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "OpenAI",
       "source": "https://github.com/openai/plugins/tree/main/plugins/codex-security"
     },
@@ -183,7 +215,9 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "Jesse Vincent",
       "source": "https://github.com/openai/plugins/tree/main/plugins/superpowers"
     },
@@ -196,7 +230,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "Figma",
       "source": "https://github.com/openai/plugins/tree/main/plugins/figma"
     },
@@ -209,7 +246,9 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "Remotion",
       "source": "https://github.com/openai/plugins/tree/main/plugins/remotion"
     },
@@ -222,7 +261,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "Notion",
       "source": "https://github.com/openai/plugins/tree/main/plugins/notion"
     },
@@ -235,7 +277,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-adaptive-experiment",
       "path": "skills/regenerative-adaptive-experiment"
@@ -249,7 +294,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-capability-exchange",
       "path": "skills/regenerative-capability-exchange"
@@ -263,7 +311,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-conflict-repair",
       "path": "skills/regenerative-conflict-repair"
@@ -277,7 +328,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-impact-map",
       "path": "skills/regenerative-impact-map"
@@ -291,7 +345,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-knowledge-commons",
       "path": "skills/regenerative-knowledge-commons"
@@ -305,7 +362,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-language-bridge",
       "path": "skills/regenerative-language-bridge"
@@ -319,7 +379,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-listening-loop",
       "path": "skills/regenerative-listening-loop"
@@ -333,7 +396,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-participatory-decision",
       "path": "skills/regenerative-participatory-decision"
@@ -347,7 +413,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-resilience-plan",
       "path": "skills/regenerative-resilience-plan"
@@ -361,7 +430,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/regenerative-resource-cycle",
       "path": "skills/regenerative-resource-cycle"
@@ -375,7 +447,11 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex", "Agents SDK"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex",
+        "Agents SDK"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/featured/openai-agents-sdk-builder",
       "path": "skills/featured/openai-agents-sdk-builder"
@@ -389,7 +465,11 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex", "Agents SDK"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex",
+        "Agents SDK"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/featured/realtime-api-integration",
       "path": "skills/featured/realtime-api-integration"
@@ -403,7 +483,10 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["ChatGPT", "Codex"],
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/featured/chatgpt-apps-deployer",
       "path": "skills/featured/chatgpt-apps-deployer"
@@ -417,10 +500,23 @@
       "rating_state": "unrated",
       "reviews": 0,
       "last_verified": "2026-09-08",
-      "compatibility": ["Codex"],
+      "compatibility": [
+        "Codex"
+      ],
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/featured/codex-pr-reviewer",
       "path": "skills/featured/codex-pr-reviewer"
     }
-  ]
+  ],
+  "evidence_model": {
+    "tiers": [
+      "indexed",
+      "source-checked",
+      "tested",
+      "recommended"
+    ],
+    "bundled_cards": "trust/skills.json",
+    "trust_claim_policy": "evidence-not-popularity",
+    "note": "Catalog inclusion and provenance status are distinct from Trust Layer evidence states; popularity does not imply testing or recommendation."
+  }
 }

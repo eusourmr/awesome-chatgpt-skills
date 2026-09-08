@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "generated_for_package": "0.4.0",
+  "policy": "Evidence Cards describe observed properties and known gaps; they are not safety guarantees.",
+  "defaults": {
+    "provenance": {
+      "state": "verified",
+      "publisher": "ChatGPT Skills project",
+      "license": "MIT",
+      "source": "https://github.com/eusourmr/chatgpt-skills",
+      "artifact": "versioned npm package snapshot"
+    },
+    "integrity": {
+      "state": "tested",
+      "basis": "installer records SHA-256 for every copied file and doctor verifies the recorded hashes"
+    },
+    "security": {
+      "state": "inspected",
+      "notes": "Security Gate v1 scans bundled artifacts for blocking patterns; informational signals remain visible for human review."
+    },
+    "compatibility": [
+      {
+        "surface": "Codex",
+        "state": "inspected",
+        "evidence": "open Agent Skills structure plus Codex project/user target adapter"
+      },
+      {
+        "surface": "Cursor",
+        "state": "inspected",
+        "evidence": "open Agent Skills structure plus Cursor project/user target adapter"
+      },
+      {
+        "surface": "Portable Agent Skills",
+        "state": "inspected",
+        "evidence": "export/install to .agents/skills"
+      },
+      {
+        "surface": "ChatGPT",
+        "state": "declared",
+        "evidence": "CLI prepares files for manual upload; it does not claim direct ChatGPT Web installation"
+      }
+    ],
+    "maintenance": {
+      "state": "verified",
+      "last_verified": "2026-09-08",
+      "stale_after_days": 90
+    },
+    "recommendation": {
+      "state": "conditional",
+      "reason": "Bundled, source-reviewed and integrity-checked; dedicated task-level end-to-end evidence is still incomplete."
+    },
+    "known_gaps": []
+  },
+  "skills": {
+    "openai-agents-sdk-builder": {
+      "name": "OpenAI Agents SDK Builder",
+      "summary": "Scaffolds a minimal Agents SDK project and guides production hardening.",
+      "permissions": {
+        "local_files": "writes scaffold files in a user-selected target",
+        "network": "none during scaffolding; generated app uses OpenAI API when later run",
+        "secrets": "does not read secrets; generated app expects OPENAI_API_KEY",
+        "process_execution": "none in the scaffolder",
+        "destructive_actions": "--force can overwrite generated files in the selected target"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "scaffolder creates app.py, requirements.txt, .env.example and README.md deterministically"
+      },
+      "known_gaps": [
+        "No dedicated end-to-end task fixture against a live Agents SDK environment yet."
+      ]
+    },
+    "realtime-api-integration": {
+      "name": "Realtime API Integration",
+      "summary": "Creates a starter for Realtime API transport design with browser/server separation and fallback guidance.",
+      "permissions": {
+        "local_files": "writes server.mjs, package.json, .env.example and transport-plan.json",
+        "network": "none during scaffolding; generated server uses OpenAI Realtime when later run",
+        "secrets": "does not read secrets; generated server expects OPENAI_API_KEY",
+        "process_execution": "none in the scaffolder",
+        "destructive_actions": "writes named files in the selected target"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "scaffolder emits a deterministic starter and transport plan"
+      },
+      "known_gaps": [
+        "No dedicated end-to-end WebRTC/WebSocket fixture against a live Realtime session yet."
+      ]
+    },
+    "chatgpt-apps-deployer": {
+      "name": "ChatGPT Apps Deployer",
+      "summary": "Builds a deterministic release manifest for a ChatGPT app project without implying platform approval.",
+      "permissions": {
+        "local_files": "recursively reads project files and writes a release manifest",
+        "network": "none",
+        "secrets": "none required",
+        "process_execution": "none",
+        "destructive_actions": "overwrites the configured manifest output path"
+      },
+      "usefulness": {
+        "state": "tested",
+        "evidence": "deterministic SHA-256 manifest generation is directly executable without external credentials"
+      },
+      "known_gaps": [
+        "Does not submit or approve an app in ChatGPT; deployment remains a separate platform action."
+      ]
+    },
+    "codex-pr-reviewer": {
+      "name": "Codex PR Reviewer",
+      "summary": "Builds a deterministic review prompt from versioned business rules and severities.",
+      "permissions": {
+        "local_files": "reads a JSON rules file and writes one Markdown prompt",
+        "network": "none",
+        "secrets": "none required",
+        "process_execution": "none",
+        "destructive_actions": "overwrites the configured output prompt"
+      },
+      "usefulness": {
+        "state": "tested",
+        "evidence": "rule validation and deterministic prompt generation are directly executable"
+      },
+      "known_gaps": [
+        "Does not itself fetch or review a pull request; Codex or another review surface performs that step."
+      ]
+    },
+    "regenerative-adaptive-experiment": {
+      "name": "Regenerative Adaptive Experiment",
+      "summary": "Turns uncertainty into a small reversible experiment with explicit learning and harm checks.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-capability-exchange": {
+      "name": "Regenerative Capability Exchange",
+      "summary": "Designs reciprocal capability exchange instead of one-way dependency.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-impact-map": {
+      "name": "Regenerative Impact Map",
+      "summary": "Maps a decision across systemic lenses, loops, spillovers and leverage points.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-knowledge-commons": {
+      "name": "Regenerative Knowledge Commons",
+      "summary": "Turns project learning into reusable, governed and correctable shared knowledge.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-language-bridge": {
+      "name": "Regenerative Language Bridge",
+      "summary": "Explains complex material plainly while preserving technical precision and uncertainty.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-listening-loop": {
+      "name": "Regenerative Listening Loop",
+      "summary": "Creates an ethical listen-understand-act-report-back feedback cycle.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-participatory-decision": {
+      "name": "Regenerative Participatory Decision",
+      "summary": "Structures a fair, traceable decision with meaningful participation and dissent.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    },
+    "regenerative-resilience-plan": {
+      "name": "Regenerative Resilience Plan",
+      "summary": "Builds capacity to prevent, absorb, adapt to, recover from and learn through disruption.",
+      "permissions": {
+        "local_files": "none required by the packaged instruction skill",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "instruction-only skill passed repository regenerative design gates and structural validation"
+      },
+      "known_gaps": ["No dedicated outcome fixture measuring task-level effectiveness yet."]
+    }
+  }
+}
