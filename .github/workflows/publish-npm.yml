@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -31,16 +32,17 @@ jobs:
       - name: Validate repository
         run: npm run validate
 
-      - name: Verify tag matches package version
+      - name: Resolve package version
         id: version
         shell: bash
         run: |
           version=$(node -p "require('./package.json').version")
-          if [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+          if [ "${GITHUB_EVENT_NAME}" = "push" ] && [ "${GITHUB_REF_TYPE}" = "tag" ] && [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
             echo "Tag ${GITHUB_REF_NAME} does not match package version v${version}."
             exit 1
           fi
           echo "value=${version}" >> "$GITHUB_OUTPUT"
+          echo "Publishing candidate chatgpt-skills@${version}"
 
       - name: Check whether version is already published
         id: registry
