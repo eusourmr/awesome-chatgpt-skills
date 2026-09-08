@@ -1,4 +1,4 @@
-name: Update progress panel
+name: Check progress panel freshness
 
 on:
   schedule:
@@ -6,28 +6,21 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  update:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Validate and update progress
-        run: python scripts/validate_catalog.py --write-progress
-      - name: Commit progress changes
+      - name: Rebuild progress panel and require no diff
+        shell: bash
         run: |
-          if git diff --quiet -- PROGRESS.md; then
-            echo "No progress changes."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add PROGRESS.md
-          git commit -m "chore: update catalog progress"
-          git push
+          set -euo pipefail
+          python scripts/validate_catalog.py --write-progress
+          git diff --exit-code -- PROGRESS.md
