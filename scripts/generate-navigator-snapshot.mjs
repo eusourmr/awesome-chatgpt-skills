@@ -4,7 +4,8 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const thisFile = fileURLToPath(import.meta.url);
+const root = path.resolve(path.dirname(thisFile), '..');
 const readJson = async (rel) => JSON.parse(await readFile(path.join(root, rel), 'utf8'));
 
 async function loadExternalSources() {
@@ -65,18 +66,24 @@ export async function buildSnapshot() {
   };
 }
 
-const target = path.join(root, 'skills', 'featured', 'cs-navigator', 'references', 'catalog-snapshot.json');
-const snapshot = await buildSnapshot();
-const rendered = JSON.stringify(snapshot, null, 2) + '\n';
+async function main() {
+  const target = path.join(root, 'skills', 'featured', 'cs-navigator', 'references', 'catalog-snapshot.json');
+  const snapshot = await buildSnapshot();
+  const rendered = JSON.stringify(snapshot, null, 2) + '\n';
 
-if (process.argv.includes('--check')) {
-  const current = await readFile(target, 'utf8');
-  if (current !== rendered) {
-    console.error('CS Navigator snapshot is stale. Run: node scripts/generate-navigator-snapshot.mjs');
-    process.exit(1);
+  if (process.argv.includes('--check')) {
+    const current = await readFile(target, 'utf8');
+    if (current !== rendered) {
+      console.error('CS Navigator snapshot is stale. Run: node scripts/generate-navigator-snapshot.mjs');
+      process.exit(1);
+    }
+    console.log(`CS Navigator snapshot OK: ${snapshot.entries.length} bundled skills, ${snapshot.external_sources.length} external source(s).`);
+  } else {
+    await writeFile(target, rendered, 'utf8');
+    console.log(`Wrote ${path.relative(root, target)}`);
   }
-  console.log(`CS Navigator snapshot OK: ${snapshot.entries.length} bundled skills, ${snapshot.external_sources.length} external source(s).`);
-} else {
-  await writeFile(target, rendered, 'utf8');
-  console.log(`Wrote ${path.relative(root, target)}`);
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile)) {
+  await main();
 }
