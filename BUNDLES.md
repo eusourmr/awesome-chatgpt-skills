@@ -4,6 +4,22 @@ Bundles turn the catalog into useful starting points instead of a flat list. Eac
 
 > The npm command works after the package is published. Until then, the repository package can be invoked with `npx github:eusourmr/chatgpt-skills install --bundle <name>`.
 
+## 🧭 CS Core Bundle
+
+The smallest entry point to ChatGPT Skills: describe the job in plain language and let `cs-navigator` recommend the smallest evidence-backed skill set.
+
+- `cs-navigator`
+
+```bash
+npx chatgpt-skills install --bundle cs-core
+```
+
+For ChatGPT upload/export:
+
+```bash
+npx chatgpt-skills install --skill cs-navigator --tool chatgpt-web --yes
+```
+
 ## 🧑‍💻 Developer Bundle
 
 For agent architecture, realtime systems, ChatGPT apps, PR review, and resilient delivery.
@@ -76,4 +92,4 @@ npx chatgpt-skills install --bundle openai-ecosystem
 npx chatgpt-skills install --bundle openai-ecosystem --tool codex-cli --yes
 ```
 
-The installer writes skills to `.chatgpt/skills/` and records the selected bundle, tool, install timestamp, and enabled skills in `.chatgpt/skills-config.json`.
+The installer writes each skill to the target adapter's native or portable directory and records the selected bundle/skill, version, target, hashes, and enabled skills in the corresponding CS config. For `chatgpt-web`, CS exports upload-ready ZIPs instead of claiming direct installation.

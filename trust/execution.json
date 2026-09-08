@@ -37,6 +37,13 @@
       "required_capabilities": ["local-files", "local-runtime"],
       "evidence": "Prompt generation is directly tested; fetching and reviewing a live pull request happens on another surface."
     },
+    "cs-navigator": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load CS Navigator with its bundled versioned catalog snapshot, then describe the job in the same chat.",
+      "required_capabilities": [],
+      "evidence": "The core recommendation workflow requires only skill instructions and a bundled immutable reference snapshot; no external account, network, local runtime or gateway is required."
+    },
     "regenerative-adaptive-experiment": {
       "mode": "chat-native",
       "evidence_state": "designed",

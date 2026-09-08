@@ -124,6 +124,25 @@
         "Does not itself fetch or review a pull request; Codex or another review surface performs that step."
       ]
     },
+    "cs-navigator": {
+      "name": "CS Navigator",
+      "summary": "Turns a plain-language job into the smallest evidence-backed ChatGPT Skills recommendation using a versioned local catalog snapshot.",
+      "permissions": {
+        "local_files": "none required by the chat-native workflow; it reads only its bundled reference snapshot through the skill runtime",
+        "network": "none required",
+        "secrets": "none required",
+        "process_execution": "none required",
+        "destructive_actions": "none required"
+      },
+      "usefulness": {
+        "state": "inspected",
+        "evidence": "navigation rules, source-preserving trust boundaries and deterministic catalog snapshot are validated in CI"
+      },
+      "known_gaps": [
+        "End-to-end recommendation behavior inside a qualifying ChatGPT Skills surface has not yet been promoted from designed to tested.",
+        "The bundled snapshot is intentionally finite and can report a coverage gap when a job is not represented."
+      ]
+    },
     "regenerative-adaptive-experiment": {
       "name": "Regenerative Adaptive Experiment",
       "summary": "Turns uncertainty into a small reversible experiment with explicit learning and harm checks.",
