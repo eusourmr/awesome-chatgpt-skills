@@ -1,0 +1,4 @@
+interface:
+  display_name: OpenAI Agents SDK Builder
+  short_description: Scaffold and review Agents SDK applications.
+  default_prompt: Use $openai-agents-sdk-builder to design the smallest safe OpenAI Agents SDK workflow for this task.

@@ -1,0 +1,4 @@
+interface:
+  display_name: Codex PR Reviewer
+  short_description: Review PRs against versioned business rules.
+  default_prompt: Use $codex-pr-reviewer to review this pull request against the repository's explicit business rules and changed behavior.
