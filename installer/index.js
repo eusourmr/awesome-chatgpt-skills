@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
@@ -11,6 +11,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(here, '..');
 const manifest = JSON.parse(await readFile(path.join(here, 'manifest.json'), 'utf8'));
 const trust = JSON.parse(await readFile(path.join(packageRoot, 'trust', 'skills.json'), 'utf8'));
+const execution = JSON.parse(await readFile(path.join(packageRoot, 'trust', 'execution.json'), 'utf8'));
 const packageMeta = JSON.parse(await readFile(path.join(packageRoot, 'package.json'), 'utf8'));
 const args = process.argv.slice(2);
 const command = args[0] && !args[0].startsWith('-') ? args[0] : 'install';
@@ -53,6 +54,20 @@ async function choose(rl, question, items) {
     console.log('Escolha um número válido.');
   }
 }
+function normalizeSourceRef(ref) {
+  return ref.replace(/^https?:\/\/github\.com\//i, '').replace(/\/+$/, '');
+}
+async function loadExternalSources() {
+  const result = {};
+  const dir = path.join(packageRoot, 'sources', 'external');
+  if (!(await exists(dir))) return result;
+  for (const name of (await readdir(dir)).filter((item) => item.endsWith('.json')).sort()) {
+    const record = JSON.parse(await readFile(path.join(dir, name), 'utf8'));
+    if (record.repository) result[record.repository] = record;
+  }
+  return result;
+}
+const externalSources = await loadExternalSources();
 
 const adapters = {
   'codex-cli': {
@@ -100,21 +115,41 @@ if (command === 'list') {
   for (const [name, skills] of Object.entries(manifest.bundles)) console.log(`- ${name}: ${skills.join(', ')}`);
   console.log('Targets:');
   for (const [name, adapter] of Object.entries(adapters)) console.log(`- ${name}: ${adapter.label} (${adapter.mode})`);
+  if (Object.keys(externalSources).length) console.log(`External sources indexed: ${Object.keys(externalSources).length}`);
   process.exit(0);
 }
 
 if (command === 'inspect') {
-  const skillId = positional(0);
-  if (!skillId) {
-    console.error('Uso: chatgpt-skills inspect <skill-id>');
+  const inspectRef = positional(0);
+  if (!inspectRef) {
+    console.error('Uso: chatgpt-skills inspect <skill-id|owner/repo|github-url>');
     console.error(`Bundled skills: ${Object.keys(manifest.skills).join(', ')}`);
     process.exit(2);
   }
-  const rawCard = trust.skills?.[skillId];
+
+  const rawCard = trust.skills?.[inspectRef];
   if (!rawCard) {
-    console.error(`Evidence Card não encontrada para: ${skillId}`);
-    process.exit(1);
+    const sourceRef = normalizeSourceRef(inspectRef);
+    const source = externalSources[sourceRef];
+    if (!source) {
+      console.error(`Skill ou fonte externa não encontrada: ${inspectRef}`);
+      process.exit(1);
+    }
+    console.log(`Fonte externa: ${source.repository}`);
+    console.log(`Origem: ${source.source_url}`);
+    console.log(`Descoberta: ${source.discovery_state}`);
+    console.log(`Confiança: ${source.trust_state}`);
+    console.log(`Commit imutável: ${source.immutable_ref}`);
+    console.log(`Licença: ${source.license}`);
+    console.log(`Skills observadas: ${source.skill_count}`);
+    console.log(`Último push observado: ${source.last_push || 'desconhecido'}`);
+    console.log(`Alertas: ${source.warnings?.length ? source.warnings.join(', ') : 'nenhum'}`);
+    console.log(`Política: ${source.policy}`);
+    process.exit(0);
   }
+
+  const skillId = inspectRef;
+  const executionCard = execution.skills?.[skillId];
   const card = {
     ...trust.defaults,
     ...rawCard,
@@ -135,6 +170,14 @@ if (command === 'inspect') {
   console.log(`Integridade: ${card.integrity.state} — ${card.integrity.basis}`);
   console.log(`Permissões: arquivos=${card.permissions.local_files}; rede=${card.permissions.network}; segredos=${card.permissions.secrets}; processos=${card.permissions.process_execution}`);
   console.log(`Segurança: ${card.security.state} — ${card.security.notes}`);
+  if (executionCard) {
+    console.log(`Execução: ${executionCard.mode} — evidência=${executionCard.evidence_state}`);
+    console.log(`Setup mínimo: ${executionCard.minimum_setup}`);
+    console.log(`Capacidades obrigatórias: ${executionCard.required_capabilities.length ? executionCard.required_capabilities.join(', ') : 'nenhuma'}`);
+    console.log(`Evidência de execução: ${executionCard.evidence}`);
+  } else {
+    console.log('Execução: unknown — sem classificação registrada');
+  }
   console.log('Compatibilidade:');
   for (const item of card.compatibility) console.log(`- ${item.surface}: ${item.state} — ${item.evidence}`);
   if (card.external_capabilities?.length) {
