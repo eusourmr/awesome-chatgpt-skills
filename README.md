@@ -3,48 +3,80 @@
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![Validate catalog](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Curation](https://img.shields.io/badge/curation-human--governed-2f6f4e.svg)](CONTRIBUTING.md)
+[![Catalog](https://img.shields.io/badge/catalog-30%20skills-4c1.svg)](PROGRESS.md)
+[![Standard](https://img.shields.io/badge/Agent%20Skills-agentskills.io-6f42c1.svg)](https://agentskills.io/)
 
-A curated, source-checked directory of reusable skills and skill-first plugins for ChatGPT and Codex, with an auditable regenerative core.
+**The curated skills catalog for the OpenAI ecosystem.** Unlike a flat community list, entries here are source-checked, categorized by use case, mapped to the open Agent Skills format, and separated by provenance: OpenAI-published, independently verified, or community-authored.
 
-[Português do Brasil](README.pt-BR.md)
+[Português do Brasil](README.pt-BR.md) · [Bundles](BUNDLES.md) · [Progress](PROGRESS.md) · [Roadmap](ROADMAP.md) · [Community](COMMUNITY.md)
 
-> Independent community project. Not affiliated with or endorsed by OpenAI. ChatGPT and Codex are trademarks of OpenAI.
+> **Independent community project. Not affiliated with or endorsed by OpenAI.** “Official” in this repository describes attributable OpenAI publication/provenance; it never means OpenAI has endorsed this repository.
 
-## Why this list exists
+## 🏛️ Official OpenAI Catalog
 
-A folder named `skill` is not enough. This catalog favors focused workflows, visible licensing, inspectable source, honest compatibility claims, and practical installation paths.
+This section is a **source-verified window into OpenAI-published skills/plugins**, not a claim that this repository itself is official.
 
-OpenAI distinguishes two distribution shapes:
+[![OpenAI Build iOS Apps](https://img.shields.io/badge/OpenAI-Build%20iOS%20Apps-000000?logo=openai&logoColor=white)](https://github.com/openai/plugins/tree/main/plugins/build-ios-apps)
+[![OpenAI Build Web Apps](https://img.shields.io/badge/OpenAI-Build%20Web%20Apps-000000?logo=openai&logoColor=white)](https://github.com/openai/plugins/tree/main/plugins/build-web-apps)
+[![OpenAI Developers](https://img.shields.io/badge/OpenAI-Developers-000000?logo=openai&logoColor=white)](https://github.com/openai/plugins/tree/main/plugins/openai-developers)
 
-- A **standalone skill** is a directory containing `SKILL.md` and optional scripts, references, assets, and `agents/openai.yaml`. It is available in the ChatGPT desktop app, Codex CLI, and Codex IDE extension.
-- A **plugin** is an installable package that may bundle skills, connectors, and MCP tools. Skill-bearing plugins can be used in ChatGPT Chat and Work and in Codex, subject to product, account, platform, and dependency availability.
+The quality catalog currently tracks **30 skills**: **12 OpenAI-published**, **14 project-verified**, and **4 community-authored**. Rejections are reported only when there is an auditable record; the current recorded rejection count is **0**, not an invented confidence statistic. See [`PROGRESS.md`](PROGRESS.md) and [`catalog.json`](catalog.json).
 
-See the official guides for [building skills](https://learn.chatgpt.com/docs/build-skills) and [skills and plugins](https://learn.chatgpt.com/docs/skills-and-plugins).
+## Why this catalog is different
 
-## What makes this different
+| Capability | This catalog | Typical flat list |
+|---|---:|---:|
+| OpenAI provenance distinguished from third-party authorship | ✅ | Sometimes |
+| Agent Skills / `SKILL.md` format checks | ✅ | Inconsistent |
+| Continuous verification date | ✅ | Rare |
+| Human-governed curation policy | ✅ | Varies |
+| Machine-readable status, compatibility, rating state and reviews | ✅ | Rare |
+| Bundles by real use case | ✅ | ❌ |
+| Interactive installer | ✅ | ❌ |
+| Public health/progress report | ✅ | ❌ |
+| Regenerative/systemic design standard | ✅ | ❌ |
 
-This repository has two layers:
+## 🚀 Start in 1 Minute
 
-- The **ecosystem map** points to useful official and community projects. Inclusion means the source and claims were reviewed; it is not a regenerative certification.
-- The **Regenerative core** contains repository-authored skills that must improve at least three of five lenses—human, social, knowledge, resources, and ecology—while checking harm in all five.
+Interactive install:
 
-Every core skill needs a reinforcing benefit loop **and** a balancing safeguard, a regenerative seed left for the next cycle, separate resource accounting, plain language before technical depth, and observable indicators. The label describes a reviewed design, not a proven real-world result.
+```bash
+npx awesome-chatgpt-skills install
+```
 
-Read the complete [Regenerative Skills Standard](docs/REGENERATIVE_STANDARD.md).
+The npm package must be published before that exact command resolves from the npm registry. Until then, run the repository package directly:
 
-## Curation labels
+```bash
+npx github:eusourmr/awesome-chatgpt-skills install
+```
 
-| Label | Meaning |
+Choose a profile and tool, and the installer writes the recommended skills to `.chatgpt/skills/` plus `.chatgpt/skills-config.json`.
+
+Install a bundle directly:
+
+```bash
+npx awesome-chatgpt-skills install --bundle openai-ecosystem
+```
+
+See all curated packages in [`BUNDLES.md`](BUNDLES.md).
+
+## Featured OpenAI-native production skills
+
+| Skill | Purpose |
 |---|---|
-| `OpenAI catalog` | Present in the official `openai/plugins` examples repository. This does not guarantee endorsement or account availability. |
-| `Community` | Independently published and reviewed against this repository's criteria. |
-| `Regenerative core` | Repository-authored skill that passes every systemic design gate. |
-| `Design reviewed` | Instructions and review metadata passed validation; field outcomes are not yet proven. |
-| `Chat` | Intended for ChatGPT conversational use. For standalone core skills, this currently means the desktop app. |
-| `Work` | Intended for ChatGPT Work workflows and artifacts. |
-| `Codex` | Intended for Codex desktop, CLI, IDE, or cloud workflows. |
+| [`openai-agents-sdk-builder`](skills/featured/openai-agents-sdk-builder/) | Scaffold and review Agents SDK projects with tools, guardrails, state, tracing and sandbox boundaries. |
+| [`realtime-api-integration`](skills/featured/realtime-api-integration/) | Design WebSocket/WebRTC Realtime integrations with explicit transport fallback and secret isolation. |
+| [`chatgpt-apps-deployer`](skills/featured/chatgpt-apps-deployer/) | Package and validate ChatGPT Apps SDK releases without pretending platform approval is automatic. |
+| [`codex-pr-reviewer`](skills/featured/codex-pr-reviewer/) | Review PRs against versioned business rules with risk-ranked evidence. |
 
-Surface tags are conservative curation labels, not availability guarantees. Inspect source, permissions, scripts, and dependencies before installation.
+## Curation model
+
+A folder named `skill` is not enough. This catalog favors focused workflows, inspectable source, visible licensing, honest compatibility claims, narrow permissions, testable installation paths, and plain language before technical depth.
+
+OpenAI distinguishes standalone skills from plugin packages, while the open Agent Skills format defines a lightweight folder centered on `SKILL.md`. This repository uses both concepts conservatively and records what surface a candidate actually supports.
+
+The repository also has a stricter **Regenerative core**: repository-authored skills there must improve at least three of five lenses—human, social, knowledge, resources, and ecology—while checking harm across all five, creating a reinforcing benefit loop, adding a balancing safeguard, and leaving reusable capability behind. Read the complete [Regenerative Skills Standard](docs/REGENERATIVE_STANDARD.md).
 
 ## Catalog
 
@@ -100,54 +132,33 @@ Surface tags are conservative curation labels, not availability guarantees. Insp
 - [**Codex Security**](https://github.com/openai/plugins/tree/main/plugins/codex-security) — Run reusable security scanning, analysis, validation, triage, and investigation workflows across code and diffs. `Plugin` · `OpenAI catalog` · `Codex` · `License: Proprietary` · OpenAI · 2026-09-08
 <!-- CATALOG:END -->
 
-## Use a core skill
+## Quality & verification
 
-Each `skills/<name>/` folder follows the standalone skill structure. Standalone skills are supported in the ChatGPT desktop app, Codex CLI, and Codex IDE extension. Follow the official [Build skills](https://learn.chatgpt.com/docs/build-skills) flow for the surface you use, then invoke the skill by name, for example:
+`catalog.json` adds the required quality metadata for each tracked skill: category, status, rating, review count, verification date, and compatibility. Ratings are never inferred from provenance. A `0` paired with `rating_state: unrated` means no public score exists yet.
 
-```text
-Use $regenerative-impact-map to compare this decision across the five lenses.
-```
-
-Using these skills through ChatGPT web, mobile, or Work requires packaging them as a plugin; this release does not claim that distribution yet.
-
-## What qualifies
-
-A submission should solve a real, repeatable task; expose an inspectable `SKILL.md` or plugin manifest; identify its publisher and license; disclose dependencies and data access; use safe authorization boundaries; and provide evidence for every claimed surface.
-
-The `Regenerative core` is stricter: every mandatory gate in the standard must pass. A useful skill that does not pass remains eligible for the wider ecosystem map without the label.
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
-
-## Repository-native curator
-
-The repo includes [`$catalog-curator`](.agents/skills/catalog-curator/SKILL.md), a repo-scoped skill for consistent reviews. Clone the project, open it in Codex, and ask:
-
-```text
-Use $catalog-curator to review https://github.com/owner/repository for inclusion.
-```
-
-## Validate locally
+Validate locally:
 
 ```bash
 python scripts/catalog.py --check
+python scripts/validate_catalog.py
 ```
 
-After changing `catalog/skills.json`, regenerate both language editions:
+Regenerate the visual progress panel:
 
 ```bash
-python scripts/catalog.py --write
+python scripts/validate_catalog.py --write-progress
 ```
+
+## Contributing
+
+Every new bundled skill must follow the Agent Skills format, include a `SKILL.md` with `Description`, `Use Cases`, `Installation`, and `Example`, pass automated validation, and run through [`$catalog-curator`](.agents/skills/catalog-curator/SKILL.md) before acceptance. See [CONTRIBUTING.md](CONTRIBUTING.md) and [COMMUNITY.md](COMMUNITY.md).
 
 ## Official starting points
 
-- [OpenAI: Build skills](https://learn.chatgpt.com/docs/build-skills)
-- [OpenAI: Skills & Plugins](https://learn.chatgpt.com/docs/skills-and-plugins)
+- [OpenAI developer documentation](https://developers.openai.com/)
 - [OpenAI Plugins repository](https://github.com/openai/plugins)
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
 - [Agent Skills open standard](https://agentskills.io/)
-
-## Acknowledgements
-
-Inspired by the community-curation model of [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills). Its content is not mirrored here; entries are reviewed and described for the ChatGPT and Codex ecosystem.
 
 ## License
 
