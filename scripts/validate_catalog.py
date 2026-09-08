@@ -110,6 +110,9 @@ def validate(data: dict) -> tuple[list[str], list[str]]:
         accepted = stats.get("accepted")
         if accepted != len(entries):
             warnings.append("review_stats.accepted does not match catalog entry count")
+        review_cycle = parse_date(stats.get("last_review_cycle"), "review_stats.last_review_cycle", errors)
+        if review_cycle and review_cycle > date.today():
+            warnings.append("review_stats.last_review_cycle is in the future")
     return errors, warnings
 
 
@@ -127,6 +130,9 @@ def health(data: dict) -> dict:
         if e.get("rating_state") == "unrated" or (e["rating"] == 0 and e["reviews"] == 0):
             unrated.append(e["id"])
     official_openai = sum(1 for e in entries if e["status"] == "official" and e["publisher"] == "OpenAI")
+    reviewed_at = data.get("review_stats", {}).get("last_review_cycle")
+    if not isinstance(reviewed_at, str):
+        reviewed_at = max(e["last_verified"] for e in entries)
     return {
         "total": len(entries),
         "official": status["official"],
@@ -140,7 +146,7 @@ def health(data: dict) -> dict:
         "rejected_recorded": int(data.get("review_stats", {}).get("rejected_recorded", 0)),
         "catalog_schema": data.get("schema_version"),
         "evidence_tiers": data.get("evidence_model", {}).get("tiers", []),
-        "updated": today.isoformat(),
+        "updated": reviewed_at,
     }
 
 
