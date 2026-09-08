@@ -2,6 +2,19 @@
 
 All notable changes to ChatGPT Skills are documented here.
 
+## 0.3.1 — 2026-09-08
+
+### Fixed
+
+- Restored the npm executable mapping so `npx chatgpt-skills ...` resolves to `installer/index.js` under npm 11.
+- Kept the Node-only prepublish gate so Windows maintainers do not need Python just to publish the package.
+- Confirmed the packaged CLI and bundled installation path in GitHub Actions before release.
+
+### Release note
+
+- `0.3.0` exists on npm but was published without a usable `bin` entry after npm normalized an older package manifest. It should not be treated as the recommended CLI release.
+- `0.3.1` is the first intended public CLI release.
+
 ## 0.3.0 — 2026-09-08
 
 ### Added
