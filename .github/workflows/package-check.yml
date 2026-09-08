@@ -57,11 +57,21 @@ jobs:
           node -e "const p=require('./pack.json')[0]; if (!p || !p.filename) process.exit(1); console.log('tarball='+p.filename)" >> "$GITHUB_OUTPUT"
           cat pack.json
 
-      - name: Smoke-test packaged CLI
+      - name: Smoke-test packaged CLI and doctor
         shell: bash
         run: |
+          set -euo pipefail
+          rm -rf /tmp/chatgpt-skills-smoke
           mkdir -p /tmp/chatgpt-skills-smoke
           cd /tmp/chatgpt-skills-smoke
           npm init -y >/dev/null 2>&1
           npm install "$GITHUB_WORKSPACE/${{ steps.pack.outputs.tarball }}" >/dev/null
           ./node_modules/.bin/chatgpt-skills list
+          ./node_modules/.bin/chatgpt-skills install --bundle openai-ecosystem --tool codex-cli --yes
+          ./node_modules/.bin/chatgpt-skills doctor
+
+          printf '\n# corruption fixture\n' >> .chatgpt/skills/openai-agents-sdk-builder/SKILL.md
+          if ./node_modules/.bin/chatgpt-skills doctor; then
+            echo 'doctor failed to detect modified skill content'
+            exit 1
+          fi
