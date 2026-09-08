@@ -6,7 +6,9 @@ import readline from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+const packageRoot = path.resolve(here, '..');
 const manifest = JSON.parse(await readFile(path.join(here, 'manifest.json'), 'utf8'));
+const packageMeta = JSON.parse(await readFile(path.join(packageRoot, 'package.json'), 'utf8'));
 const args = process.argv.slice(2);
 const command = args[0] && !args[0].startsWith('-') ? args[0] : 'install';
 
@@ -16,6 +18,18 @@ function valueOf(flag) {
 }
 function has(flag) { return args.includes(flag); }
 function choiceLabel(items) { return items.map((x, i) => `${i + 1}) ${x.label}`).join('\n'); }
+function inside(root, candidate) {
+  const rel = path.relative(root, candidate);
+  return rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel));
+}
+function packagedFile(skillPath, rel) {
+  const skillRoot = path.resolve(packageRoot, skillPath);
+  const source = path.resolve(skillRoot, rel);
+  if (!inside(packageRoot, skillRoot) || !inside(skillRoot, source)) {
+    throw new Error(`Caminho inválido no manifesto: ${skillPath}/${rel}`);
+  }
+  return source;
+}
 async function choose(rl, question, items) {
   while (true) {
     const raw = (await rl.question(`${question}\n${choiceLabel(items)}\n> `)).trim();
@@ -24,13 +38,9 @@ async function choose(rl, question, items) {
     console.log('Escolha um número válido.');
   }
 }
-async function download(url) {
-  const res = await fetch(url, { headers: { 'user-agent': 'chatgpt-skills-installer' } });
-  if (!res.ok) throw new Error(`HTTP ${res.status} ao baixar ${url}`);
-  return Buffer.from(await res.arrayBuffer());
-}
 
 if (command === 'list') {
+  console.log(`ChatGPT Skills ${packageMeta.version}`);
   console.log('Bundles:');
   for (const [name, skills] of Object.entries(manifest.bundles)) console.log(`- ${name}: ${skills.join(', ')}`);
   process.exit(0);
@@ -69,10 +79,10 @@ try {
     if (!skill) throw new Error(`Manifesto inconsistente: ${skillId}`);
     const targetSkill = path.join(targetRoot, skillId);
     for (const rel of skill.files) {
-      const url = `https://raw.githubusercontent.com/${manifest.repository}/${manifest.branch}/${skill.path}/${rel}`;
+      const source = packagedFile(skill.path, rel);
       const out = path.join(targetSkill, rel);
       await mkdir(path.dirname(out), { recursive: true });
-      await writeFile(out, await download(url));
+      await writeFile(out, await readFile(source));
     }
     installed.push(skillId);
     console.log(`✓ ${skillId}`);
@@ -80,6 +90,9 @@ try {
   const configPath = path.join(path.dirname(targetRoot), 'skills-config.json');
   const config = {
     schema_version: 1,
+    package: packageMeta.name,
+    package_version: packageMeta.version,
+    distribution: manifest.distribution,
     bundle,
     tool,
     installed_at: new Date().toISOString(),
@@ -88,6 +101,7 @@ try {
   };
   await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
   console.log(`\nInstalação concluída: ${installed.length} skills`);
+  console.log(`Versão: ${packageMeta.version}`);
   console.log(`Destino: ${targetRoot}`);
   console.log(`Configuração: ${configPath}`);
 } catch (error) {
