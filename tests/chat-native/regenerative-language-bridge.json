@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "skill": "regenerative-language-bridge",
+  "execution_mode": "chat-native",
+  "evidence_state_before_test": "designed",
+  "purpose": "Provide a reproducible, low-risk fixture for the first end-to-end ChatGPT Skills execution test.",
+  "prompt": "Explain this to a non-specialist software product manager who must decide whether retry behavior is safe to enable: An API client implements exponential backoff with jitter; requests are retried on HTTP 429 and 5xx responses up to five times; mutation endpoints must use idempotency keys; retries can improve resilience but may increase tail latency and amplify load during partial outages.",
+  "required_sections": [
+    "In plain language",
+    "Key terms",
+    "Technical layer",
+    "Check understanding",
+    "Learning loop",
+    "Resource note"
+  ],
+  "required_terms": [
+    "exponential backoff",
+    "jitter",
+    "429",
+    "idempotency",
+    "tail latency"
+  ],
+  "required_behaviors": [
+    "State the practical decision or implication before deep technical detail.",
+    "Preserve material caveats instead of simplifying them away.",
+    "Define required technical terms while keeping the exact searchable terminology.",
+    "Include a comprehension or teach-back check.",
+    "Leave a reusable glossary or explanation artifact.",
+    "Include a resource/review note.",
+    "Do not claim the retry policy is universally safe or optimal without context."
+  ],
+  "promotion_rule": "Only promote execution evidence from designed to tested after the exact versioned skill is loaded on a qualifying ChatGPT Skills surface and the same-chat output satisfies this fixture without undeclared external dependencies.",
+  "external_dependencies_required": false
+}
