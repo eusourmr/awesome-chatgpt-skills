@@ -9,7 +9,7 @@
   },
   "files": [
     "installer",
-    "skills/featured",
+    "skills",
     "catalog.json",
     "BUNDLES.md",
     "NOTICE"
