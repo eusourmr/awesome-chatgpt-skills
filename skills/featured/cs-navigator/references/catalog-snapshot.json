@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "policy": "Use the smallest useful set. Execution and trust are separate. External indexed sources are discovery-only until separately evidenced.",
+  "source_contract": [
+    "installer/manifest.json",
+    "trust/skills.json",
+    "trust/execution.json",
+    "sources/external/*.json"
+  ],
+  "entries": [
+    {
+      "id": "chatgpt-apps-deployer",
+      "name": "ChatGPT Apps Deployer",
+      "summary": "Builds a deterministic release manifest for a ChatGPT app project without implying platform approval.",
+      "recommendation": "conditional",
+      "execution_mode": "local-agent",
+      "execution_evidence": "tested",
+      "required_capabilities": [
+        "local-files",
+        "local-runtime"
+      ],
+      "known_gaps": [
+        "Does not submit or approve an app in ChatGPT; deployment remains a separate platform action."
+      ]
+    },
+    {
+      "id": "codex-pr-reviewer",
+      "name": "Codex PR Reviewer",
+      "summary": "Builds a deterministic review prompt from versioned business rules and severities.",
+      "recommendation": "conditional",
+      "execution_mode": "local-agent",
+      "execution_evidence": "tested",
+      "required_capabilities": [
+        "local-files",
+        "local-runtime"
+      ],
+      "known_gaps": [
+        "Does not itself fetch or review a pull request; Codex or another review surface performs that step."
+      ]
+    },
+    {
+      "id": "cs-navigator",
+      "name": "CS Navigator",
+      "summary": "Turns a plain-language job into the smallest evidence-backed ChatGPT Skills recommendation using a versioned local catalog snapshot.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "End-to-end recommendation behavior inside a qualifying ChatGPT Skills surface has not yet been promoted from designed to tested.",
+        "The bundled snapshot is intentionally finite and can report a coverage gap when a job is not represented."
+      ]
+    },
+    {
+      "id": "openai-agents-sdk-builder",
+      "name": "OpenAI Agents SDK Builder",
+      "summary": "Scaffolds a minimal Agents SDK project and guides production hardening.",
+      "recommendation": "conditional",
+      "execution_mode": "local-agent",
+      "execution_evidence": "tested",
+      "required_capabilities": [
+        "local-files",
+        "local-runtime"
+      ],
+      "known_gaps": [
+        "No dedicated end-to-end task fixture against a live Agents SDK environment yet."
+      ]
+    },
+    {
+      "id": "realtime-api-integration",
+      "name": "Realtime API Integration",
+      "summary": "Creates a starter for Realtime API transport design with browser/server separation and fallback guidance.",
+      "recommendation": "conditional",
+      "execution_mode": "local-agent",
+      "execution_evidence": "tested",
+      "required_capabilities": [
+        "local-files",
+        "local-runtime"
+      ],
+      "known_gaps": [
+        "No dedicated end-to-end WebRTC/WebSocket fixture against a live Realtime session yet."
+      ]
+    },
+    {
+      "id": "regenerative-adaptive-experiment",
+      "name": "Regenerative Adaptive Experiment",
+      "summary": "Turns uncertainty into a small reversible experiment with explicit learning and harm checks.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-capability-exchange",
+      "name": "Regenerative Capability Exchange",
+      "summary": "Designs reciprocal capability exchange instead of one-way dependency.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-impact-map",
+      "name": "Regenerative Impact Map",
+      "summary": "Maps a decision across systemic lenses, loops, spillovers and leverage points.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-knowledge-commons",
+      "name": "Regenerative Knowledge Commons",
+      "summary": "Turns project learning into reusable, governed and correctable shared knowledge.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-language-bridge",
+      "name": "Regenerative Language Bridge",
+      "summary": "Explains complex material plainly while preserving technical precision and uncertainty.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-listening-loop",
+      "name": "Regenerative Listening Loop",
+      "summary": "Creates an ethical listen-understand-act-report-back feedback cycle.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-participatory-decision",
+      "name": "Regenerative Participatory Decision",
+      "summary": "Structures a fair, traceable decision with meaningful participation and dissent.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    },
+    {
+      "id": "regenerative-resilience-plan",
+      "name": "Regenerative Resilience Plan",
+      "summary": "Builds capacity to prevent, absorb, adapt to, recover from and learn through disruption.",
+      "recommendation": "conditional",
+      "execution_mode": "chat-native",
+      "execution_evidence": "designed",
+      "required_capabilities": [],
+      "known_gaps": [
+        "No dedicated outcome fixture measuring task-level effectiveness yet."
+      ]
+    }
+  ],
+  "external_sources": [
+    {
+      "repository": "dkyazzentwatwa/chatgpt-skills",
+      "immutable_ref": "103b4308f65df393e76765cb1ce12395d9cf5106",
+      "discovery_state": "indexed",
+      "trust_state": "not-evaluated",
+      "license": "unresolved",
+      "skill_count": 12,
+      "warnings": [
+        "license-unresolved",
+        "openai-yaml-legacy-shape",
+        "stale-audit-count"
+      ],
+      "skill_ids": [
+        "crypto-ta-analyzer",
+        "data-storyteller",
+        "document-converter-suite",
+        "financial-calculator",
+        "geo-toolkit",
+        "image-enhancement-suite",
+        "mcp-builder",
+        "media-toolkit",
+        "ocr-document-processor",
+        "qr-code-generator",
+        "skill-creator",
+        "svg-precision-skill"
+      ]
+    }
+  ]
+}
