@@ -22,7 +22,7 @@ jobs:
           git grep -Il 'awesome-chatgpt-skills' | xargs -r sed -i 's/awesome-chatgpt-skills/chatgpt-skills/g'
           python scripts/catalog.py --write
           python scripts/catalog.py --check
-          python scripts/validate_catalog.py --stale-days 90
+          python scripts/validate_catalog.py
           node --check installer/index.js
           python -m unittest discover -s tests
 
