@@ -25,7 +25,7 @@ async function choose(rl, question, items) {
   }
 }
 async function download(url) {
-  const res = await fetch(url, { headers: { 'user-agent': 'awesome-chatgpt-skills-installer' } });
+  const res = await fetch(url, { headers: { 'user-agent': 'chatgpt-skills-installer' } });
   if (!res.ok) throw new Error(`HTTP ${res.status} ao baixar ${url}`);
   return Buffer.from(await res.arrayBuffer());
 }
