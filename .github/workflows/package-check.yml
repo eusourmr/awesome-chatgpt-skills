@@ -6,6 +6,8 @@ on:
       - 'package.json'
       - 'installer/**'
       - 'skills/featured/**'
+      - 'skills/regenerative-*/**'
+      - 'trust/**'
       - 'catalog.json'
       - 'BUNDLES.md'
       - 'scripts/**'
@@ -18,6 +20,8 @@ on:
       - 'package.json'
       - 'installer/**'
       - 'skills/featured/**'
+      - 'skills/regenerative-*/**'
+      - 'trust/**'
       - 'catalog.json'
       - 'BUNDLES.md'
       - 'scripts/**'
@@ -49,6 +53,15 @@ jobs:
       - name: Validate repository
         run: npm run validate
 
+      - name: Prove Security Gate blocks unsafe fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          if node scripts/security-check.mjs --path tests/fixtures/unsafe-skill; then
+            echo 'Security Gate failed to block the deliberately unsafe fixture'
+            exit 1
+          fi
+
       - name: Build npm tarball
         id: pack
         shell: bash
@@ -57,21 +70,49 @@ jobs:
           node -e "const p=require('./pack.json')[0]; if (!p || !p.filename) process.exit(1); console.log('tarball='+p.filename)" >> "$GITHUB_OUTPUT"
           cat pack.json
 
-      - name: Smoke-test packaged CLI and doctor
+      - name: Smoke-test packaged CLI, Evidence Cards and target adapters
         shell: bash
         run: |
           set -euo pipefail
           rm -rf /tmp/chatgpt-skills-smoke
-          mkdir -p /tmp/chatgpt-skills-smoke
-          cd /tmp/chatgpt-skills-smoke
+          mkdir -p /tmp/chatgpt-skills-smoke/host
+          cd /tmp/chatgpt-skills-smoke/host
           npm init -y >/dev/null 2>&1
           npm install "$GITHUB_WORKSPACE/${{ steps.pack.outputs.tarball }}" >/dev/null
-          ./node_modules/.bin/chatgpt-skills list
-          ./node_modules/.bin/chatgpt-skills install --bundle openai-ecosystem --tool codex-cli --yes
-          ./node_modules/.bin/chatgpt-skills doctor
+          CLI="$PWD/node_modules/.bin/chatgpt-skills"
 
-          printf '\n# corruption fixture\n' >> .chatgpt/skills/openai-agents-sdk-builder/SKILL.md
-          if ./node_modules/.bin/chatgpt-skills doctor; then
+          "$CLI" list
+          "$CLI" inspect openai-agents-sdk-builder | grep -q 'Recomendação: conditional'
+          "$CLI" inspect chatgpt-apps-deployer | grep -q 'Integridade: tested'
+
+          mkdir -p /tmp/chatgpt-skills-smoke/codex
+          cd /tmp/chatgpt-skills-smoke/codex
+          "$CLI" install --bundle openai-ecosystem --tool codex-cli --scope project --yes
+          test -f .codex/skills/openai-agents-sdk-builder/SKILL.md
+          test -f .codex/chatgpt-skills-config.json
+          "$CLI" doctor
+          printf '\n# corruption fixture\n' >> .codex/skills/openai-agents-sdk-builder/SKILL.md
+          if "$CLI" doctor; then
             echo 'doctor failed to detect modified skill content'
             exit 1
           fi
+
+          mkdir -p /tmp/chatgpt-skills-smoke/cursor
+          cd /tmp/chatgpt-skills-smoke/cursor
+          "$CLI" install --bundle education --tool cursor --scope project --yes
+          test -f .cursor/skills/regenerative-language-bridge/SKILL.md
+          "$CLI" doctor
+
+          mkdir -p /tmp/chatgpt-skills-smoke/portable
+          cd /tmp/chatgpt-skills-smoke/portable
+          "$CLI" install --bundle data-analyst --tool agents-portable --scope project --yes
+          test -f .agents/skills/regenerative-impact-map/SKILL.md
+          "$CLI" doctor
+
+          mkdir -p /tmp/chatgpt-skills-smoke/chatgpt
+          cd /tmp/chatgpt-skills-smoke/chatgpt
+          "$CLI" install --bundle openai-ecosystem --tool chatgpt-web --scope project --yes | tee export.log
+          test -f .chatgpt-skills/export/skills/openai-agents-sdk-builder/SKILL.md
+          test -f .chatgpt-skills/export/chatgpt-skills-export.json
+          grep -q 'não instala diretamente no ChatGPT Web' export.log
+          "$CLI" doctor
