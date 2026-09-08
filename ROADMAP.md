@@ -8,7 +8,7 @@ See [`docs/ECOSYSTEM_GROWTH_STRATEGY.md`](docs/ECOSYSTEM_GROWTH_STRATEGY.md) for
 
 The project has completed the first distribution milestone: a versioned npm CLI, curated bundles, machine-readable catalog metadata, validation workflows, and public provenance rules.
 
-The next goal is **not catalog size alone**. OpenAI already provides first-party Plugin and Skills discovery surfaces, while generic Agent Skills installers already serve broad multi-agent distribution. ChatGPT Skills should therefore differentiate as an independent trust, evidence, compatibility, and composition layer.
+The next goal is **not catalog size alone**. OpenAI already provides first-party Plugin and Skills discovery surfaces, while generic Agent Skills installers already serve broad multi-agent distribution. ChatGPT Skills should therefore differentiate as an independent trust, evidence, compatibility, execution, and composition layer.
 
 The project may scale discovery broadly while keeping trust claims narrow: `indexed`, `source-checked`, `tested`, and `recommended` must remain distinct states.
 
@@ -30,15 +30,18 @@ Build the evidence model that makes the catalog useful before it becomes large.
 
 **Exit criteria:** every bundled skill has an evidence card; platform install/export semantics are honest; `doctor` detects corrupted/incomplete installs; `inspect` explains trust without an opaque score; CI blocks a deliberately unsafe fixture.
 
-## v0.5 — Useful Service & Coverage
+## v0.5 — Useful Service & Chat-Native Execution
 
-Turn the trust data into a discovery service focused on user jobs rather than repository browsing, while expanding coverage without inflating verification claims.
+Turn the trust data into a discovery service focused on user jobs, while proving the shortest reliable path from a skill to useful execution inside ChatGPT.
 
 ### Deliverables
 
+- Adopt `docs/EXECUTION_MODEL.md` and classify every bundled skill as `chat-native`, `native-tools`, `connected`, or `local-agent`, with an explicit evidence state.
+- Prove at least one `chat-native` skill end-to-end using the native ChatGPT Skills flow: create/upload or install, activate automatically or by `@`, complete the job in the same chat, and record the evidence without claiming broader availability than was tested.
+- Keep **Chat-Native First** as the default architecture: use ChatGPT itself first, then a focused skill, then native tools, and add external apps/MCP/API only when the job truly requires them.
 - Generate a static/searchable web catalog from the same source of truth as the CLI.
 - Search by problem to solve, not only skill name or category.
-- Show trust/evidence cards, last verification, permissions, compatibility, external app dependencies, and known limitations on every result.
+- Show trust/evidence cards, execution mode, last verification, permissions, compatibility, external app dependencies, and known limitations on every result.
 - Add outcome-oriented bundle recommendations: describe the job, get the smallest useful set of skills.
 - Detect overlapping or potentially conflicting skills in a bundle.
 - Provide machine-readable JSON endpoints/artifacts so other tools can consume the catalog without scraping the website.
@@ -48,7 +51,7 @@ Turn the trust data into a discovery service focused on user jobs rather than re
 - Add one narrow app-backed reference workflow and compare at least one optional third-party provider (for example Composio) against the relevant OpenAI-native app/plugin path where comparable.
 - Publish three reproducible case studies before broad promotional campaigns.
 
-**Exit criteria:** a user can go from a plain-language job to a small evidence-backed recommendation, inspect the trade-offs before installation/export, and distinguish broad discovery coverage from independently tested trust evidence.
+**Exit criteria:** a user can go from a plain-language job to a small evidence-backed recommendation, understand whether the workflow stays inside ChatGPT or needs another execution surface, inspect the trade-offs before installation/export, and distinguish broad discovery coverage from independently tested trust evidence. At least one chat-native workflow has recorded end-to-end ChatGPT execution evidence.
 
 ## v0.6 — Continuous Verification
 
@@ -101,3 +104,4 @@ Do **not** launch an "Awarded Skills" program before there is enough external ev
 9. **Open standards before proprietary gateways.** Prefer MCP, Agent Skills, existing app/plugin mechanisms, and thin adapters over new protocols.
 10. **No paid trust.** Sponsorship, if ever introduced, must never buy ranking, verification, or a positive recommendation.
 11. **Regenerative by design.** Repository-authored regenerative skills retain the stronger multi-lens systemic standard and should create more reusable capability than the resources they consume.
+12. **Chat-Native First.** Prefer workflows that become useful after loading a skill and stay in the same chat; add infrastructure only when it creates necessary capability.
