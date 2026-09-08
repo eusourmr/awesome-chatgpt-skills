@@ -1,0 +1,67 @@
+name: Validate npm package
+
+on:
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'installer/**'
+      - 'skills/featured/**'
+      - 'catalog.json'
+      - 'BUNDLES.md'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/package-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'installer/**'
+      - 'skills/featured/**'
+      - 'catalog.json'
+      - 'BUNDLES.md'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/package-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Validate repository
+        run: npm run validate
+
+      - name: Build npm tarball
+        id: pack
+        shell: bash
+        run: |
+          npm pack --json > pack.json
+          node -e "const p=require('./pack.json')[0]; if (!p || !p.filename) process.exit(1); console.log('tarball='+p.filename)" >> "$GITHUB_OUTPUT"
+          cat pack.json
+
+      - name: Smoke-test packaged CLI
+        shell: bash
+        run: |
+          mkdir -p /tmp/chatgpt-skills-smoke
+          cd /tmp/chatgpt-skills-smoke
+          npm init -y >/dev/null 2>&1
+          npm install "$GITHUB_WORKSPACE/${{ steps.pack.outputs.tarball }}" >/dev/null
+          ./node_modules/.bin/chatgpt-skills list
