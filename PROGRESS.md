@@ -4,9 +4,9 @@
 
 | Metric | Count |
 |---|---:|
-| Total de Skills | **30** |
+| Total de Skills | **31** |
 | Skills Oficiais da OpenAI | **12** |
-| Skills Verificadas (curadoria governada) | **14** |
+| Skills Verificadas (curadoria governada) | **15** |
 | Skills da Comunidade | **4** |
 | Skills em rascunho | **0** |
 | Desatualizadas (>90 dias) | **0** |
