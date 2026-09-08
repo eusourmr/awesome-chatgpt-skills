@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "repository": "eusourmr/chatgpt-skills",
+  "branch": "main",
+  "skills": {
+    "openai-agents-sdk-builder": {"path":"skills/featured/openai-agents-sdk-builder","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_agent.py"]},
+    "realtime-api-integration": {"path":"skills/featured/realtime-api-integration","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_realtime.py"]},
+    "chatgpt-apps-deployer": {"path":"skills/featured/chatgpt-apps-deployer","files":["SKILL.md","agents/openai.yaml","scripts/package_app.py"]},
+    "codex-pr-reviewer": {"path":"skills/featured/codex-pr-reviewer","files":["SKILL.md","agents/openai.yaml","scripts/build_review_prompt.py"]},
+    "regenerative-adaptive-experiment": {"path":"skills/regenerative-adaptive-experiment","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-capability-exchange": {"path":"skills/regenerative-capability-exchange","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-impact-map": {"path":"skills/regenerative-impact-map","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-knowledge-commons": {"path":"skills/regenerative-knowledge-commons","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-language-bridge": {"path":"skills/regenerative-language-bridge","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-listening-loop": {"path":"skills/regenerative-listening-loop","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-participatory-decision": {"path":"skills/regenerative-participatory-decision","files":["SKILL.md","agents/openai.yaml"]},
+    "regenerative-resilience-plan": {"path":"skills/regenerative-resilience-plan","files":["SKILL.md","agents/openai.yaml"]}
+  },
+  "bundles": {
+    "developer": ["openai-agents-sdk-builder","realtime-api-integration","chatgpt-apps-deployer","codex-pr-reviewer","regenerative-resilience-plan"],
+    "data-analyst": ["regenerative-adaptive-experiment","regenerative-impact-map","regenerative-knowledge-commons","regenerative-language-bridge"],
+    "marketing-growth": ["regenerative-listening-loop","regenerative-language-bridge","regenerative-capability-exchange","regenerative-participatory-decision"],
+    "education": ["regenerative-language-bridge","regenerative-knowledge-commons","regenerative-adaptive-experiment","regenerative-listening-loop"],
+    "openai-ecosystem": ["openai-agents-sdk-builder","realtime-api-integration","chatgpt-apps-deployer","codex-pr-reviewer"]
+  }
+}

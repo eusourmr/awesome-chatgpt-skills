@@ -1,0 +1,4 @@
+interface:
+  display_name: Realtime API Integration
+  short_description: Build safe WebSocket and WebRTC Realtime integrations.
+  default_prompt: Use $realtime-api-integration to choose and scaffold a secure OpenAI Realtime transport architecture.

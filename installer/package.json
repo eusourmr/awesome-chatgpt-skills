@@ -1,0 +1,10 @@
+{
+  "name": "chatgpt-skills",
+  "version": "0.2.0",
+  "description": "Interactive installer for the curated ChatGPT, Codex and OpenAI skills catalog.",
+  "type": "module",
+  "bin": {"chatgpt-skills":"./index.js"},
+  "files":["index.js","manifest.json"],
+  "engines":{"node":">=20"},
+  "license":"MIT"
+}
