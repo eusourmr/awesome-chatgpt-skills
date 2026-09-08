@@ -1,8 +1,8 @@
 {
   "name": "chatgpt-skills",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": false,
-  "description": "Curated, verified skills and bundles for ChatGPT, Codex and the OpenAI ecosystem.",
+  "description": "Evidence-backed skills discovery, inspection and installation for ChatGPT, Codex and Agent Skills workflows.",
   "type": "module",
   "bin": {
     "chatgpt-skills": "installer/index.js"
@@ -10,14 +10,15 @@
   "files": [
     "installer",
     "skills",
+    "trust",
     "catalog.json",
     "BUNDLES.md",
     "NOTICE"
   ],
   "scripts": {
-    "validate": "python scripts/catalog.py --check && python scripts/validate_catalog.py && node --check installer/index.js && python -m unittest discover -s tests",
+    "validate": "python scripts/catalog.py --check && python scripts/validate_catalog.py && node scripts/security-check.mjs && node --check installer/index.js && python -m unittest discover -s tests",
     "pack:check": "npm pack --dry-run --json",
-    "prepublish:check": "node scripts/prepublish-check.mjs && node --check installer/index.js",
+    "prepublish:check": "node scripts/prepublish-check.mjs && node scripts/security-check.mjs && node --check installer/index.js",
     "prepublishOnly": "npm run prepublish:check"
   },
   "engines": {
@@ -30,7 +31,9 @@
     "agent-skills",
     "skills",
     "agents",
-    "cli"
+    "cli",
+    "security",
+    "provenance"
   ],
   "author": "Ricardo Rocha",
   "license": "MIT",
