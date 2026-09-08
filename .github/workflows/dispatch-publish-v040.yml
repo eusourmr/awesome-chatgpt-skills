@@ -1,0 +1,24 @@
+name: Dispatch v0.4.0 npm publish
+
+on:
+  push:
+    branches:
+      - ops/tag-v0.4.0
+    paths:
+      - '.github/workflows/dispatch-publish-v040.yml'
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch permanent trusted-publishing workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run publish-npm.yml --repo eusourmr/chatgpt-skills --ref main

@@ -1,0 +1,38 @@
+name: Create v0.4.0 tag
+
+on:
+  push:
+    branches:
+      - ops/tag-v0.4.0
+    paths:
+      - '.github/workflows/tag-v040.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Verify release source and create tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: 263e3a131e58ed1dd286016cba9e36f8a58f797c
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$RELEASE_SHA"
+          test "$(node -p "require('./package.json').version")" = "0.4.0"
+          if gh api repos/eusourmr/chatgpt-skills/git/ref/tags/v0.4.0 >/dev/null 2>&1; then
+            current=$(gh api repos/eusourmr/chatgpt-skills/git/ref/tags/v0.4.0 --jq '.object.sha')
+            test "$current" = "$RELEASE_SHA"
+            echo "v0.4.0 already points to exact release source."
+          else
+            gh api --method POST repos/eusourmr/chatgpt-skills/git/refs \
+              -f ref='refs/tags/v0.4.0' \
+              -f sha="$RELEASE_SHA"
+          fi
