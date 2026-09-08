@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "policy": "Execution class describes the minimum required execution surface for the core workflow. It is not a safety guarantee or compatibility score.",
+  "classes": {
+    "chat-native": "Core job can be completed from the skill inside ChatGPT without a mandatory external app, local runtime, or skill-introduced network dependency.",
+    "native-tools": "Core job depends on one or more native ChatGPT tools but not on a mandatory external account integration.",
+    "connected": "Core job requires an external app, plugin, MCP server, API, OAuth connection, or other connected provider.",
+    "local-agent": "Core deterministic workflow materially depends on a local filesystem, CLI, executable script, or agent runtime."
+  },
+  "evidence_states": ["designed", "tested", "conditional", "unknown"],
+  "skills": {
+    "openai-agents-sdk-builder": {
+      "mode": "local-agent",
+      "evidence_state": "tested",
+      "minimum_setup": "Local agent/runtime with filesystem access; generated app later needs OpenAI API credentials to run.",
+      "required_capabilities": ["local-files", "local-runtime"],
+      "evidence": "Packaged smoke tests exercise the deterministic scaffolder; this does not prove an equivalent complete workflow inside ChatGPT."
+    },
+    "realtime-api-integration": {
+      "mode": "local-agent",
+      "evidence_state": "tested",
+      "minimum_setup": "Local Node/runtime and filesystem access; generated integration later needs network access and OpenAI API credentials.",
+      "required_capabilities": ["local-files", "local-runtime"],
+      "evidence": "Packaged smoke tests exercise deterministic starter generation; live Realtime execution remains a separate evidence gap."
+    },
+    "chatgpt-apps-deployer": {
+      "mode": "local-agent",
+      "evidence_state": "tested",
+      "minimum_setup": "Local filesystem/runtime for deterministic release-manifest generation.",
+      "required_capabilities": ["local-files", "local-runtime"],
+      "evidence": "Manifest generation is directly tested; platform submission or approval is not performed by the skill."
+    },
+    "codex-pr-reviewer": {
+      "mode": "local-agent",
+      "evidence_state": "tested",
+      "minimum_setup": "Local filesystem/runtime to validate rules and generate the deterministic review prompt.",
+      "required_capabilities": ["local-files", "local-runtime"],
+      "evidence": "Prompt generation is directly tested; fetching and reviewing a live pull request happens on another surface."
+    },
+    "regenerative-adaptive-experiment": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-capability-exchange": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-impact-map": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-knowledge-commons": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-language-bridge": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-listening-loop": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-participatory-decision": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    },
+    "regenerative-resilience-plan": {
+      "mode": "chat-native",
+      "evidence_state": "designed",
+      "minimum_setup": "Install/load the skill, then continue in the same chat.",
+      "required_capabilities": [],
+      "evidence": "Instruction-only packaged workflow requires no local files, network, secrets, processes, or external apps."
+    }
+  }
+}
