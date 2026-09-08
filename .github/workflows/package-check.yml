@@ -11,6 +11,7 @@ on:
       - 'catalog.json'
       - 'BUNDLES.md'
       - 'scripts/**'
+      - 'sources/**'
       - 'tests/**'
       - '.github/workflows/package-check.yml'
   push:
@@ -25,6 +26,7 @@ on:
       - 'catalog.json'
       - 'BUNDLES.md'
       - 'scripts/**'
+      - 'sources/**'
       - 'tests/**'
       - '.github/workflows/package-check.yml'
 
@@ -62,6 +64,23 @@ jobs:
             exit 1
           fi
 
+      - name: Validate metadata-only external ingestion
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/ingest-github-repo.mjs \
+            --snapshot tests/fixtures/external-repo/dkyazzentwatwa-chatgpt-skills.json \
+            --output /tmp/external-source.json
+          node - <<'NODE'
+          const x = require('/tmp/external-source.json');
+          const requiredWarnings = ['license-unresolved', 'openai-yaml-legacy-shape', 'stale-audit-count'];
+          if (x.skill_count !== 12) process.exit(1);
+          if (x.discovery_state !== 'indexed' || x.trust_state !== 'not-evaluated') process.exit(1);
+          if (x.license !== 'unresolved') process.exit(1);
+          if (!requiredWarnings.every((warning) => x.warnings.includes(warning))) process.exit(1);
+          if (x.skills.some((skill) => skill.copied_into_cs !== false || skill.source_owned !== true)) process.exit(1);
+          NODE
+
       - name: Build npm tarball
         id: pack
         shell: bash
@@ -83,6 +102,8 @@ jobs:
 
           "$CLI" list
           "$CLI" inspect openai-agents-sdk-builder | grep -q 'Recomendação: conditional'
+          "$CLI" inspect openai-agents-sdk-builder | grep -q 'Execução: local-agent — evidência=tested'
+          "$CLI" inspect regenerative-language-bridge | grep -q 'Execução: chat-native — evidência=designed'
           "$CLI" inspect chatgpt-apps-deployer | grep -q 'Integridade: tested'
 
           mkdir -p /tmp/chatgpt-skills-smoke/codex
