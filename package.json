@@ -1,13 +1,47 @@
 {
   "name": "chatgpt-skills",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": false,
-  "description": "Curated skills for ChatGPT, Codex and the OpenAI ecosystem.",
+  "description": "Curated, verified skills and bundles for ChatGPT, Codex and the OpenAI ecosystem.",
   "type": "module",
   "bin": {
     "chatgpt-skills": "./installer/index.js"
   },
-  "files": ["installer", "skills/featured", "catalog.json", "BUNDLES.md"],
-  "engines": {"node": ">=20"},
-  "license": "MIT"
+  "files": [
+    "installer",
+    "skills/featured",
+    "catalog.json",
+    "BUNDLES.md",
+    "NOTICE"
+  ],
+  "scripts": {
+    "validate": "python scripts/catalog.py --check && python scripts/validate_catalog.py && node --check installer/index.js && python -m unittest discover -s tests",
+    "pack:check": "npm pack --dry-run --json",
+    "prepublishOnly": "npm run validate"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "chatgpt",
+    "codex",
+    "openai",
+    "agent-skills",
+    "skills",
+    "agents",
+    "cli"
+  ],
+  "author": "Ricardo Rocha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eusourmr/chatgpt-skills.git"
+  },
+  "homepage": "https://github.com/eusourmr/chatgpt-skills#readme",
+  "bugs": {
+    "url": "https://github.com/eusourmr/chatgpt-skills/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
