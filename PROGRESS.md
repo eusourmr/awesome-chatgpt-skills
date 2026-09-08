@@ -15,4 +15,4 @@
 
 ## Interpretação
 
-`Official` significa autoria/publicação pela OpenAI e fonte verificada. `Verified` significa que a skill passou pelos gates editoriais deste repositório. `Community` identifica autoria de terceiros. O catálogo não confunde presença em uma coleção oficial com endosso da OpenAI a este repositório.
+`Official` significa autoria/publicação pela OpenAI e fonte verificada. `Verified` significa que a skill passou pelos gates editoriais deste repositório. `Community` identifica autoria de terceiros. O catálogo não confunde presença em uma coleção oficial com endosso da OpenAI a este repositório. A Trust Layer usa estados de evidência separados; popularidade não eleva automaticamente uma skill para `tested` ou `recommended`.

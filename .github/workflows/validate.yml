@@ -14,15 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Validate editorial catalog and generated README
         run: python scripts/catalog.py --check
       - name: Validate quality catalog and repository health
         run: python scripts/validate_catalog.py
+      - name: Verify generated progress panel is current
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/validate_catalog.py --write-progress
+          git diff --exit-code -- PROGRESS.md
       - name: Check Node installer syntax
         run: node --check installer/index.js
       - name: Test regenerative gates
