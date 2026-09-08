@@ -1,11 +1,11 @@
 {
-  "name": "awesome-chatgpt-skills",
+  "name": "chatgpt-skills",
   "version": "0.2.0",
   "private": false,
   "description": "Curated skills for ChatGPT, Codex and the OpenAI ecosystem.",
   "type": "module",
   "bin": {
-    "awesome-chatgpt-skills": "./installer/index.js"
+    "chatgpt-skills": "./installer/index.js"
   },
   "files": ["installer", "skills/featured", "catalog.json", "BUNDLES.md"],
   "engines": {"node": ">=20"},
