@@ -33,4 +33,4 @@ jobs:
           tmp=$(mktemp -d)
           cd "$tmp"
           npx --yes chatgpt-skills@0.3.0 install --bundle openai-ecosystem --tool codex-cli --yes
-          node -e "const c=require(process.cwd()+'/.chatgpt/skills-config.json'); if(c.package_version!=='0.3.0'||c.package_name!=='chatgpt-skills'||c.enabled_skills.length!==4) process.exit(1); console.log(JSON.stringify(c,null,2))"
+          node -e "const c=require(process.cwd()+'/.chatgpt/skills-config.json'); if(c.package!=='chatgpt-skills'||c.package_version!=='0.3.0'||c.distribution!=='bundled'||c.enabled_skills.length!==4) process.exit(1); console.log(JSON.stringify(c,null,2))"
