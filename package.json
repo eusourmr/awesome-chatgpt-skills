@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-skills",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "description": "Curated, verified skills and bundles for ChatGPT, Codex and the OpenAI ecosystem.",
   "type": "module",
