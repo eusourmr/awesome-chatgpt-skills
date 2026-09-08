@@ -5,7 +5,7 @@
   "description": "Curated, verified skills and bundles for ChatGPT, Codex and the OpenAI ecosystem.",
   "type": "module",
   "bin": {
-    "chatgpt-skills": "./installer/index.js"
+    "chatgpt-skills": "installer/index.js"
   },
   "files": [
     "installer",
