@@ -21,9 +21,9 @@ expect(/^\d+\.\d+\.\d+$/.test(pkg.version), `package version must be semver, got
 expect(pkg.private === false, 'root package must be public');
 expect(pkg.bin?.['chatgpt-skills'] === './installer/index.js', 'chatgpt-skills bin must point to ./installer/index.js');
 expect(installerPkg.private === true, 'installer/package.json must remain private');
-expect(manifest.package?.name === pkg.name, 'manifest package name must match package.json');
-expect(manifest.package?.version === pkg.version, 'manifest package version must match package.json');
+expect(manifest.schema_version === 2, `manifest schema_version must be 2, got ${manifest.schema_version}`);
 expect(manifest.distribution === 'bundled', 'manifest distribution must be bundled');
+expect(manifest.source_repository === 'eusourmr/chatgpt-skills', 'manifest source_repository must be eusourmr/chatgpt-skills');
 
 for (const [skillId, skill] of Object.entries(manifest.skills ?? {})) {
   expect(typeof skill.path === 'string' && skill.path.length > 0, `${skillId}: missing path`);
