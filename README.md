@@ -45,20 +45,38 @@ Interactive install:
 npx chatgpt-skills install
 ```
 
-Published on npm as `chatgpt-skills`. Version `0.3.1` is the first recommended public CLI release; installation is reproducible because each package version bundles its own installable skills.
+Version `0.4.0` introduces the Trust Layer: target-aware installation/export, Evidence Cards, `inspect`, a stronger hash-based `doctor`, and Security Gate v1.
+
+Inspect a bundled skill before adopting it:
+
+```bash
+npx chatgpt-skills inspect openai-agents-sdk-builder
+```
+
+Check an installed/exported bundle:
+
+```bash
+npx chatgpt-skills doctor
+```
+
+Install to a native project target:
+
+```bash
+npx chatgpt-skills install --bundle openai-ecosystem --tool codex-cli --scope project --yes
+npx chatgpt-skills install --bundle education --tool cursor --scope project --yes
+npx chatgpt-skills install --bundle data-analyst --tool agents-portable --scope project --yes
+```
+
+For ChatGPT, the CLI prepares files for manual upload and **does not claim direct installation into ChatGPT Web**:
+
+```bash
+npx chatgpt-skills install --bundle openai-ecosystem --tool chatgpt-web --yes
+```
 
 Repository fallback:
 
 ```bash
 npx github:eusourmr/chatgpt-skills install
-```
-
-Choose a profile and tool, and the installer writes the recommended skills to `.chatgpt/skills/` plus `.chatgpt/skills-config.json`.
-
-Install a bundle directly:
-
-```bash
-npx chatgpt-skills install --bundle openai-ecosystem
 ```
 
 See all curated packages in [`BUNDLES.md`](BUNDLES.md).
