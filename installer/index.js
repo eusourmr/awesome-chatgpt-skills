@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
@@ -54,6 +54,20 @@ async function choose(rl, question, items) {
     console.log('Escolha um número válido.');
   }
 }
+function normalizeSourceRef(ref) {
+  return ref.replace(/^https?:\/\/github\.com\//i, '').replace(/\/+$/, '');
+}
+async function loadExternalSources() {
+  const result = {};
+  const dir = path.join(packageRoot, 'sources', 'external');
+  if (!(await exists(dir))) return result;
+  for (const name of (await readdir(dir)).filter((item) => item.endsWith('.json')).sort()) {
+    const record = JSON.parse(await readFile(path.join(dir, name), 'utf8'));
+    if (record.repository) result[record.repository] = record;
+  }
+  return result;
+}
+const externalSources = await loadExternalSources();
 
 const adapters = {
   'codex-cli': {
@@ -101,21 +115,40 @@ if (command === 'list') {
   for (const [name, skills] of Object.entries(manifest.bundles)) console.log(`- ${name}: ${skills.join(', ')}`);
   console.log('Targets:');
   for (const [name, adapter] of Object.entries(adapters)) console.log(`- ${name}: ${adapter.label} (${adapter.mode})`);
+  if (Object.keys(externalSources).length) console.log(`External sources indexed: ${Object.keys(externalSources).length}`);
   process.exit(0);
 }
 
 if (command === 'inspect') {
-  const skillId = positional(0);
-  if (!skillId) {
-    console.error('Uso: chatgpt-skills inspect <skill-id>');
+  const inspectRef = positional(0);
+  if (!inspectRef) {
+    console.error('Uso: chatgpt-skills inspect <skill-id|owner/repo|github-url>');
     console.error(`Bundled skills: ${Object.keys(manifest.skills).join(', ')}`);
     process.exit(2);
   }
-  const rawCard = trust.skills?.[skillId];
+
+  const rawCard = trust.skills?.[inspectRef];
   if (!rawCard) {
-    console.error(`Evidence Card não encontrada para: ${skillId}`);
-    process.exit(1);
+    const sourceRef = normalizeSourceRef(inspectRef);
+    const source = externalSources[sourceRef];
+    if (!source) {
+      console.error(`Skill ou fonte externa não encontrada: ${inspectRef}`);
+      process.exit(1);
+    }
+    console.log(`Fonte externa: ${source.repository}`);
+    console.log(`Origem: ${source.source_url}`);
+    console.log(`Descoberta: ${source.discovery_state}`);
+    console.log(`Confiança: ${source.trust_state}`);
+    console.log(`Commit imutável: ${source.immutable_ref}`);
+    console.log(`Licença: ${source.license}`);
+    console.log(`Skills observadas: ${source.skill_count}`);
+    console.log(`Último push observado: ${source.last_push || 'desconhecido'}`);
+    console.log(`Alertas: ${source.warnings?.length ? source.warnings.join(', ') : 'nenhum'}`);
+    console.log(`Política: ${source.policy}`);
+    process.exit(0);
   }
+
+  const skillId = inspectRef;
   const executionCard = execution.skills?.[skillId];
   const card = {
     ...trust.defaults,
