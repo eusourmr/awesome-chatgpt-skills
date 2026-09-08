@@ -137,6 +137,38 @@ jobs:
           cd /tmp/chatgpt-skills-smoke/chatgpt
           "$CLI" install --bundle openai-ecosystem --tool chatgpt-web --scope project --yes | tee export.log
           test -f .chatgpt-skills/export/skills/openai-agents-sdk-builder/SKILL.md
+          test -f .chatgpt-skills/export/packages/openai-agents-sdk-builder.zip
           test -f .chatgpt-skills/export/chatgpt-skills-export.json
-          grep -q 'não instala diretamente no ChatGPT Web' export.log
+          grep -q 'Pacotes prontos para upload' export.log
           "$CLI" doctor
+
+          mkdir -p /tmp/chatgpt-skills-smoke/chatgpt-single
+          cd /tmp/chatgpt-skills-smoke/chatgpt-single
+          "$CLI" install --skill regenerative-language-bridge --tool chatgpt-web --scope project --yes | tee export-single.log
+          test -f .chatgpt-skills/export/skills/regenerative-language-bridge/SKILL.md
+          test -f .chatgpt-skills/export/skills/regenerative-language-bridge/agents/openai.yaml
+          test -f .chatgpt-skills/export/packages/regenerative-language-bridge.zip
+          test -f .chatgpt-skills/export/chatgpt-skills-export.json
+          grep -q 'Pacotes prontos para upload' export-single.log
+          grep -q 'regenerative-language-bridge.zip' export-single.log
+
+          python - <<'PY'
+          from zipfile import ZipFile
+          from pathlib import Path
+          p = Path('.chatgpt-skills/export/packages/regenerative-language-bridge.zip')
+          with ZipFile(p) as z:
+              names = z.namelist()
+              assert z.testzip() is None
+          expected = [
+              'regenerative-language-bridge/SKILL.md',
+              'regenerative-language-bridge/agents/openai.yaml',
+          ]
+          assert names == expected, (names, expected)
+          PY
+
+          "$CLI" doctor
+          printf 'corrupt' >> .chatgpt-skills/export/packages/regenerative-language-bridge.zip
+          if "$CLI" doctor; then
+            echo 'doctor failed to detect modified ChatGPT upload ZIP'
+            exit 1
+          fi
