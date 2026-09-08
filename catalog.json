@@ -12,8 +12,8 @@
     "human_governance": "AI-assisted curation is allowed, but acceptance, policy, and release decisions remain human-governed."
   },
   "review_stats": {
-    "reviewed": 30,
-    "accepted": 30,
+    "reviewed": 31,
+    "accepted": 31,
     "rejected_recorded": 0,
     "last_review_cycle": "2026-09-08"
   },
@@ -506,6 +506,23 @@
       "publisher": "eusourmr",
       "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/featured/codex-pr-reviewer",
       "path": "skills/featured/codex-pr-reviewer"
+    },
+    {
+      "id": "cs-navigator",
+      "name": "CS Navigator",
+      "category": "Productivity",
+      "status": "verified",
+      "rating": 0,
+      "rating_state": "unrated",
+      "reviews": 0,
+      "last_verified": "2026-09-08",
+      "compatibility": [
+        "ChatGPT",
+        "Codex"
+      ],
+      "publisher": "eusourmr",
+      "source": "https://github.com/eusourmr/chatgpt-skills/tree/main/skills/featured/cs-navigator",
+      "path": "skills/featured/cs-navigator"
     }
   ],
   "evidence_model": {
