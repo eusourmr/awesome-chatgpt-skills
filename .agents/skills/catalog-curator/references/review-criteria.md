@@ -24,6 +24,21 @@ Standalone skill support and plugin distribution are not interchangeable. Consul
 
 Reject or request evidence for inaccessible or obfuscated source, copied work without attribution, secrets committed in source, unrelated hidden downloads, unsafe default actions, misleading claims, mass-generated near-duplicates, or an unidentified license.
 
+## Regenerative core gate
+
+Apply this section only when the core label is proposed. Read `docs/REGENERATIVE_STANDARD.md`; all gates are mandatory.
+
+- Define the system boundary, affected and missing voices, time horizon, and material dependencies.
+- Require a causal mechanism and observable indicator in at least three lenses: human, social, knowledge, resources, and ecology.
+- Inspect all five lenses. Every material harm needs an owner, mitigation, stop condition, or a no-go decision.
+- Name the reinforcing loop and the balancing safeguard. Positive intent alone does not make a reinforcing loop safe.
+- Name what renewable capacity, relationship, governed knowledge, repairable asset, restored resource, or reusable evidence remains.
+- Track material resource types separately against a baseline. Never combine attention, money, carbon, data, time, or energy into an unsupported net score.
+- Require plain language first, exact technical terms and caveats underneath, and a comprehension check.
+- Use `design-reviewed` for predicted outcomes. A future field-tested claim needs dated baseline and results, context, method, participant feedback, harms, limitations, and disconfirming evidence.
+
+The validator additionally requires all five lenses across the core portfolio and ecology in at least two entries.
+
 ## Summary standard
 
 Describe what the workflow helps a user accomplish. Avoid superlatives, adoption numbers, unsupported performance claims, and copied promotional language. Preserve platform and dependency limitations in both languages.

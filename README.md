@@ -4,7 +4,7 @@
 [![Validate catalog](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A curated, source-checked directory of reusable skills and skill-first plugins for ChatGPT and Codex.
+A curated, source-checked directory of reusable skills and skill-first plugins for ChatGPT and Codex, with an auditable regenerative core.
 
 [Português do Brasil](README.pt-BR.md)
 
@@ -21,13 +21,26 @@ OpenAI distinguishes two distribution shapes:
 
 See the official guides for [building skills](https://learn.chatgpt.com/docs/build-skills) and [skills and plugins](https://learn.chatgpt.com/docs/skills-and-plugins).
 
+## What makes this different
+
+This repository has two layers:
+
+- The **ecosystem map** points to useful official and community projects. Inclusion means the source and claims were reviewed; it is not a regenerative certification.
+- The **Regenerative core** contains repository-authored skills that must improve at least three of five lenses—human, social, knowledge, resources, and ecology—while checking harm in all five.
+
+Every core skill needs a reinforcing benefit loop **and** a balancing safeguard, a regenerative seed left for the next cycle, separate resource accounting, plain language before technical depth, and observable indicators. The label describes a reviewed design, not a proven real-world result.
+
+Read the complete [Regenerative Skills Standard](docs/REGENERATIVE_STANDARD.md).
+
 ## Curation labels
 
 | Label | Meaning |
 |---|---|
 | `OpenAI catalog` | Present in the official `openai/plugins` examples repository. This does not guarantee endorsement or account availability. |
 | `Community` | Independently published and reviewed against this repository's criteria. |
-| `Chat` | Intended for ChatGPT conversational use. |
+| `Regenerative core` | Repository-authored skill that passes every systemic design gate. |
+| `Design reviewed` | Instructions and review metadata passed validation; field outcomes are not yet proven. |
+| `Chat` | Intended for ChatGPT conversational use. For standalone core skills, this currently means the desktop app. |
 | `Work` | Intended for ChatGPT Work workflows and artifacts. |
 | `Codex` | Intended for Codex desktop, CLI, IDE, or cloud workflows. |
 
@@ -41,6 +54,19 @@ Surface tags are conservative curation labels, not availability guarantees. Insp
 ### Official collection
 
 - [**OpenAI Plugins**](https://github.com/openai/plugins) — The current official collection of plugin examples for ChatGPT and Codex, including skill-only and MCP-backed packages. `Collection` · `OpenAI catalog` · `Chat` · `Work` · `Codex` · `License: Per package` · OpenAI · 2026-09-08
+
+### Regenerative core
+
+- [**Regenerative Adaptive Experiment**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-adaptive-experiment) — Convert uncertainty into a small, reversible test with causal predictions, systemic measures, early harm detection, rollback, and reusable learning. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Capability Exchange**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-capability-exchange) — Create reciprocal exchanges that start from existing strengths and distribute practical capability instead of dependence on one expert. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Conflict Repair**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-conflict-repair) — Assess safety before structuring voluntary conflict repair across immediate harm, relationships, procedures, and systemic causes. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Impact Map**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-impact-map) — Map a consequential decision across five systemic lenses, causal loops, power, delays, spillovers, and reversible leverage points. `Skill` · `Regenerative core` · `Design reviewed` · `5/5 lenses: human, social, knowledge, resources, ecology` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Knowledge Commons**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-knowledge-commons) — Turn project learning into accessible, reusable, rights-aware knowledge with provenance, stewardship, correction, contribution, and expiry paths. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Language Bridge**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-language-bridge) — Explain complex material in everyday language while retaining exact terms, evidence, uncertainty, caveats, and a check of real understanding. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Listening Loop**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-listening-loop) — Build an ethical listen–understand–act–report-back cycle that gives affected people real influence and avoids extractive consultation. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Participatory Decision**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-participatory-decision) — Design a fair, traceable decision in which affected people have clear influence, dissent is preserved, and every participant receives a response. `Skill` · `Regenerative core` · `Design reviewed` · `4/5 lenses: human, social, knowledge, resources` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Resilience Plan**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-resilience-plan) — Prepare essential functions to prevent, absorb, adapt to, recover from, and learn through disruption without shifting risk to vulnerable people. `Skill` · `Regenerative core` · `Design reviewed` · `5/5 lenses: human, social, knowledge, resources, ecology` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Resource Cycle**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-resource-cycle) — Redesign a lifecycle by avoiding demand first, circulating resources safely, checking rebound, and committing to measurable restoration. `Skill` · `Regenerative core` · `Design reviewed` · `5/5 lenses: human, social, knowledge, resources, ecology` · `Chat` · `Codex` · `License: MIT` · eusourmr · 2026-09-08
 
 ### Development
 
@@ -74,9 +100,21 @@ Surface tags are conservative curation labels, not availability guarantees. Insp
 - [**Codex Security**](https://github.com/openai/plugins/tree/main/plugins/codex-security) — Run reusable security scanning, analysis, validation, triage, and investigation workflows across code and diffs. `Plugin` · `OpenAI catalog` · `Codex` · `License: Proprietary` · OpenAI · 2026-09-08
 <!-- CATALOG:END -->
 
+## Use a core skill
+
+Each `skills/<name>/` folder follows the standalone skill structure. Standalone skills are supported in the ChatGPT desktop app, Codex CLI, and Codex IDE extension. Follow the official [Build skills](https://learn.chatgpt.com/docs/build-skills) flow for the surface you use, then invoke the skill by name, for example:
+
+```text
+Use $regenerative-impact-map to compare this decision across the five lenses.
+```
+
+Using these skills through ChatGPT web, mobile, or Work requires packaging them as a plugin; this release does not claim that distribution yet.
+
 ## What qualifies
 
 A submission should solve a real, repeatable task; expose an inspectable `SKILL.md` or plugin manifest; identify its publisher and license; disclose dependencies and data access; use safe authorization boundaries; and provide evidence for every claimed surface.
+
+The `Regenerative core` is stricter: every mandatory gate in the standard must pass. A useful skill that does not pass remains eligible for the wider ecosystem map without the label.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Conflict Repair"
+  short_description: "Repair conflict safely across people and systems"
+  default_prompt: "Use $regenerative-conflict-repair to assess safety and design a voluntary, accountable repair process."

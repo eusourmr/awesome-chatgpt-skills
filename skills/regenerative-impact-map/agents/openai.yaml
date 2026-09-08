@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Impact Map"
+  short_description: "Map systemic impacts before a consequential choice"
+  default_prompt: "Use $regenerative-impact-map to map this decision across the five systemic lenses and propose a reversible next step."

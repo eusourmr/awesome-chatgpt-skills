@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Participatory Decision"
+  short_description: "Design fair decisions with affected people"
+  default_prompt: "Use $regenerative-participatory-decision to design a fair, traceable decision process with a closed feedback loop."

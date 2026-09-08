@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Knowledge Commons"
+  short_description: "Build governed knowledge that improves through reuse"
+  default_prompt: "Use $regenerative-knowledge-commons to turn this learning into accessible, governed, and reusable knowledge."

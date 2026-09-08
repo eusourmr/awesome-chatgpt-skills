@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Capability Exchange"
+  short_description: "Grow reciprocal skills, agency, and local capacity"
+  default_prompt: "Use $regenerative-capability-exchange to design a reciprocal exchange that grows independent and shared capability."

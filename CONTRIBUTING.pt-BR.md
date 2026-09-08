@@ -31,9 +31,25 @@ Não serão aceitas submissões geradas em massa, repositórios voltados apenas 
 
 Escolha a única categoria que melhor representa o fluxo.
 
+## Propor uma skill para o Núcleo regenerativo
+
+O catálogo amplo e o Núcleo regenerativo seguem revisões diferentes. Não use `regenerative-core` em `category` ou `provenance` apenas porque um projeto menciona sustentabilidade, sistemas, bem-estar ou melhoria contínua.
+
+Uma proposta para o núcleo precisa:
+
+1. passar por todos os critérios do [Padrão de Skills Regenerativas](docs/REGENERATIVE_STANDARD.pt-BR.md);
+2. incluir `systemic_review` com mecanismos e indicadores em pelo menos três áreas e verificação de danos nas cinco;
+3. nomear um ciclo de reforço e uma salvaguarda de equilíbrio;
+4. deixar uma capacidade, relação, conhecimento governado, infraestrutura reparável, recurso restaurado ou evidência reutilizável;
+5. comparar recursos materiais com uma linha de base sem misturar unidades diferentes;
+6. começar em linguagem simples, manter uma camada técnica e verificar a compreensão; e
+7. usar `design-reviewed` até existirem evidências de campo e validação adequadas.
+
+Todos os critérios são obrigatórios. Um ótimo resultado em uma área não compensa dano grave sem responsável em outra.
+
 ## Skills incorporadas
 
-Incorporar código é exceção. Prefira um link ao repositório canônico. Skills de manutenção deste projeto ficam em `.agents/skills/<nome-da-skill>/`. Outras coleções incorporadas exigem proposta de estrutura no pull request, licença compatível, atribuição e somente os recursos realmente usados.
+Incorporar trabalho de terceiros é exceção; prefira o repositório canônico. Skills de manutenção deste projeto ficam em `.agents/skills/<nome-da-skill>/`. Skills autorais do Núcleo regenerativo ficam em `skills/<nome-da-skill>/`. Outras coleções incorporadas exigem proposta de estrutura no pull request, licença compatível, atribuição e somente os recursos realmente usados.
 
 Pastas e nomes no frontmatter usam letras minúsculas, números e hífens. Todo `SKILL.md` precisa de uma `description` específica e discriminante.
 

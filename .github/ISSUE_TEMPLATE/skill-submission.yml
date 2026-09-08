@@ -54,6 +54,14 @@ body:
       label: Dependencies, permissions, and safety notes
     validations:
       required: true
+  - type: textarea
+    id: regenerative-evidence
+    attributes:
+      label: Regenerative core evidence or N/A
+      description: If proposing the core label, name mechanisms and indicators in at least three lenses, harms in all five, both loops, the regenerative seed, resource baseline and restoration, and the comprehension check.
+      placeholder: N/A for the wider catalog, or provide evidence for every mandatory gate.
+    validations:
+      required: true
   - type: checkboxes
     id: declaration
     attributes:
@@ -62,6 +70,8 @@ body:
         - label: I searched for duplicates and inspected the public source.
           required: true
         - label: I disclosed below if I own, maintain, or represent this project.
+          required: true
+        - label: I did not present an expected regenerative benefit as a measured outcome.
           required: true
   - type: textarea
     id: affiliation

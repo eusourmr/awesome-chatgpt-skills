@@ -31,9 +31,25 @@ Mass-generated submissions, SEO-only repositories, copied commercial description
 
 Choose the single category that best represents the workflow.
 
+## Propose a Regenerative core skill
+
+The wider catalog and the Regenerative core are different review tracks. Do not set `category` or `provenance` to `regenerative-core` merely because a project mentions sustainability, systems, wellbeing, or continuous improvement.
+
+A core proposal must:
+
+1. pass every gate in the [Regenerative Skills Standard](docs/REGENERATIVE_STANDARD.md);
+2. include a `systemic_review` with mechanisms and indicators for at least three lenses and a harm check across all five;
+3. name a reinforcing loop and a balancing safeguard;
+4. leave a renewable capability, relationship, governed knowledge asset, repairable infrastructure, restored resource, or reusable evidence;
+5. compare material resources with a baseline without combining unlike units;
+6. lead in plain language, retain a technical layer, and test comprehension; and
+7. use `design-reviewed` until qualifying field evidence and validation exist.
+
+All gates are mandatory. Strong performance in one lens cannot compensate for serious unowned harm in another.
+
 ## Bundled skills
 
-Bundling is exceptional. Prefer a link to the canonical repository. Repository-maintenance skills belong under `.agents/skills/<skill-name>/`. Other bundled collections need a structure proposal in the pull request, a compatible license, attribution, and only the resources the workflow actually uses.
+Bundling third-party work is exceptional; prefer its canonical repository. Repository-maintenance skills belong under `.agents/skills/<skill-name>/`. Repository-authored Regenerative core skills belong under `skills/<skill-name>/`. Other bundled collections need a structure proposal in the pull request, a compatible license, attribution, and only the resources the workflow actually uses.
 
 Skill folders and frontmatter names use lowercase letters, digits, and hyphens. Every `SKILL.md` needs a specific, discriminating `description`.
 

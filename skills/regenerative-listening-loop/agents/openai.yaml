@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Listening Loop"
+  short_description: "Close feedback loops with affected communities"
+  default_prompt: "Use $regenerative-listening-loop to design an ethical listen-act-report-back cycle for this situation."

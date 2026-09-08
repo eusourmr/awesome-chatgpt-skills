@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Language Bridge"
+  short_description: "Explain complexity clearly without losing precision"
+  default_prompt: "Use $regenerative-language-bridge to explain this material plainly, preserve technical precision, and check understanding."

@@ -4,7 +4,7 @@
 [![Validar catálogo](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 
-Um diretório selecionado e conferido de skills reutilizáveis e plugins orientados por skills para ChatGPT e Codex.
+Um diretório selecionado e conferido de skills reutilizáveis e plugins orientados por skills para ChatGPT e Codex, com um núcleo regenerativo auditável.
 
 [English](README.md)
 
@@ -21,13 +21,26 @@ A OpenAI diferencia duas formas de distribuição:
 
 Consulte os guias oficiais para [criar skills](https://learn.chatgpt.com/docs/build-skills) e entender [skills e plugins](https://learn.chatgpt.com/docs/skills-and-plugins).
 
+## O que nos torna diferentes
+
+Este repositório possui duas camadas:
+
+- O **mapa do ecossistema** indica projetos oficiais e comunitários úteis. A inclusão significa que fonte e alegações foram revisadas; não é uma certificação regenerativa.
+- O **Núcleo regenerativo** reúne skills autorais que precisam melhorar pelo menos três de cinco áreas — humana, social, conhecimento, recursos e ecologia — e verificar danos nas cinco.
+
+Cada skill do núcleo exige um ciclo de benefício que se reforça **e** uma salvaguarda de equilíbrio, uma semente regenerativa para o próximo ciclo, balanços separados de recursos, linguagem simples antes da profundidade técnica e indicadores observáveis. O selo descreve um projeto revisado, não um resultado real já comprovado.
+
+Leia o [Padrão de Skills Regenerativas](docs/REGENERATIVE_STANDARD.pt-BR.md) completo.
+
 ## Selos de curadoria
 
 | Selo | Significado |
 |---|---|
 | `Catálogo OpenAI` | Presente no repositório oficial de exemplos `openai/plugins`. Isso não garante endosso nem disponibilidade para todas as contas. |
 | `Comunidade` | Publicação independente revisada segundo os critérios deste repositório. |
-| `Chat` | Indicada para uso conversacional no ChatGPT. |
+| `Núcleo regenerativo` | Skill autoral do repositório que passa por todos os critérios sistêmicos de projeto. |
+| `Projeto revisado` | Instruções e metadados passaram pela validação; resultados em campo ainda não estão comprovados. |
+| `Chat` | Indicada para uso conversacional no ChatGPT. Nas skills independentes do núcleo, isso atualmente significa o aplicativo para desktop. |
 | `Work` | Indicada para fluxos e artefatos do ChatGPT Work. |
 | `Codex` | Indicada para fluxos do Codex desktop, CLI, IDE ou nuvem. |
 
@@ -41,6 +54,19 @@ Os selos de superfície são classificações conservadoras, não garantias de d
 ### Coleção oficial
 
 - [**OpenAI Plugins**](https://github.com/openai/plugins) — Coleção oficial atual de exemplos de plugins para ChatGPT e Codex, incluindo pacotes somente com skills e pacotes apoiados por MCP. `Coleção` · `Catálogo OpenAI` · `Chat` · `Work` · `Codex` · `Licença: Per package` · OpenAI · 2026-09-08
+
+### Núcleo regenerativo
+
+- [**Regenerative Adaptive Experiment**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-adaptive-experiment) — Converte incerteza em teste pequeno e reversível, com previsão causal, medidas sistêmicas, detecção precoce de danos, reversão e aprendizado reutilizável. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Capability Exchange**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-capability-exchange) — Cria trocas recíprocas que partem de capacidades existentes e distribuem habilidade prática em vez de dependência de um especialista. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Conflict Repair**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-conflict-repair) — Avalia a segurança antes de estruturar reparação voluntária de conflitos nos danos imediatos, relações, procedimentos e causas sistêmicas. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Impact Map**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-impact-map) — Mapeia uma decisão relevante por cinco áreas sistêmicas, ciclos causais, poder, atrasos, efeitos indiretos e pontos de alavancagem reversíveis. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `5/5 áreas: humana, social, conhecimento, recursos, ecologia` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Knowledge Commons**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-knowledge-commons) — Transforma aprendizados em conhecimento acessível, reutilizável e atento a direitos, com proveniência, curadoria, correção, contribuição e validade. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Language Bridge**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-language-bridge) — Explica conteúdo complexo em linguagem cotidiana, preservando termos exatos, evidências, incertezas, ressalvas e a verificação do entendimento real. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Listening Loop**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-listening-loop) — Cria um ciclo ético de escutar, compreender, agir e devolver que oferece influência real e evita consultas extrativistas. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Participatory Decision**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-participatory-decision) — Projeta uma decisão justa e rastreável na qual pessoas afetadas têm influência clara, divergências são preservadas e todos recebem retorno. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `4/5 áreas: humana, social, conhecimento, recursos` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Resilience Plan**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-resilience-plan) — Prepara funções essenciais para prevenir, absorver, adaptar-se, recuperar-se e aprender com rupturas sem transferir riscos a pessoas vulneráveis. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `5/5 áreas: humana, social, conhecimento, recursos, ecologia` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
+- [**Regenerative Resource Cycle**](https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-resource-cycle) — Redesenha um ciclo de vida começando por evitar demanda, circular recursos com segurança, verificar o efeito rebote e restaurar de forma mensurável. `Skill` · `Núcleo regenerativo` · `Projeto revisado` · `5/5 áreas: humana, social, conhecimento, recursos, ecologia` · `Chat` · `Codex` · `Licença: MIT` · eusourmr · 2026-09-08
 
 ### Desenvolvimento
 
@@ -74,9 +100,21 @@ Os selos de superfície são classificações conservadoras, não garantias de d
 - [**Codex Security**](https://github.com/openai/plugins/tree/main/plugins/codex-security) — Executa fluxos reutilizáveis de varredura, análise, validação, triagem e investigação de segurança em código e diffs. `Plugin` · `Catálogo OpenAI` · `Codex` · `Licença: Proprietary` · OpenAI · 2026-09-08
 <!-- CATALOG:END -->
 
+## Usar uma skill do núcleo
+
+Cada pasta `skills/<nome>/` segue a estrutura de uma skill independente. Skills independentes funcionam no aplicativo do ChatGPT para desktop, no Codex CLI e na extensão do Codex para IDE. Siga o fluxo oficial de [criação de skills](https://learn.chatgpt.com/docs/build-skills) para a superfície usada e chame a skill pelo nome, por exemplo:
+
+```text
+Use $regenerative-impact-map para comparar esta decisão nas cinco áreas.
+```
+
+Para usar essas skills no ChatGPT web, mobile ou Work, será preciso empacotá-las como plugin; esta versão ainda não declara essa forma de distribuição.
+
 ## O que pode entrar
 
 Uma submissão deve resolver uma tarefa real e repetível; expor um `SKILL.md` ou manifesto inspecionável; identificar responsável e licença; revelar dependências e acesso a dados; respeitar autorizações de segurança; e apresentar evidência para cada superfície declarada.
+
+O `Núcleo regenerativo` é mais rigoroso: todos os critérios obrigatórios do padrão precisam ser aprovados. Uma skill útil que não passe ainda pode entrar no mapa amplo, sem o selo.
 
 Leia [CONTRIBUTING.pt-BR.md](CONTRIBUTING.pt-BR.md) antes de enviar um pull request.
 

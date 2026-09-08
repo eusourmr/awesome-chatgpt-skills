@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Adaptive Experiment"
+  short_description: "Run small, reversible tests with systemic measures"
+  default_prompt: "Use $regenerative-adaptive-experiment to turn this idea into a small, reversible, systemically measured test."

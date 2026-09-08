@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Resilience Plan"
+  short_description: "Plan continuity, adaptation, and stronger recovery"
+  default_prompt: "Use $regenerative-resilience-plan to prepare this system for disruption and build distributed recovery capacity."

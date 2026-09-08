@@ -21,3 +21,5 @@ jobs:
           python-version: "3.12"
       - name: Validate metadata and generated catalog
         run: python scripts/catalog.py --check
+      - name: Test regenerative gates
+        run: python -m unittest discover -s tests

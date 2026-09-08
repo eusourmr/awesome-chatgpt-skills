@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "entries": [
     {
       "id": "openai-plugins",
@@ -238,6 +238,299 @@
       "license": "Proprietary",
       "surfaces": ["codex"],
       "checked_on": "2026-09-08"
+    },
+    {
+      "id": "regenerative-impact-map",
+      "name": "Regenerative Impact Map",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Map a consequential decision across five systemic lenses, causal loops, power, delays, spillovers, and reversible leverage points.",
+      "summary_pt_br": "Mapeia uma decisão relevante por cinco áreas sistêmicas, ciclos causais, poder, atrasos, efeitos indiretos e pontos de alavancagem reversíveis.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-impact-map",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Makes agency, safety, accessibility, and workload effects explicit before selection.", "indicator": "Material human effects with an owner, measure, and mitigation."},
+          "social": {"mechanism": "Includes affected non-users, missing voices, maintainers, and power differences.", "indicator": "Participation gaps and unowned social effects remaining at review."},
+          "knowledge": {"mechanism": "Leaves a reusable causal map with assumptions, delays, and unknowns.", "indicator": "Priority unknowns resolved and decisions that reuse the map."},
+          "resources": {"mechanism": "Compares separate attention, time, money, compute, data, material, and energy effects.", "indicator": "Measured use against baseline for each material resource type."},
+          "ecology": {"mechanism": "Includes the living environment and delayed ecological spillovers inside the boundary.", "indicator": "Locally relevant ecological thresholds and measures assigned to the decision."}
+        },
+        "harm_check": "All five lenses are inspected; every material spillover needs an owner, mitigation, stop rule, or no-go decision.",
+        "reinforcing_loop": "A better map improves decisions, which produce evidence that improves the next map.",
+        "balancing_safeguard": "Stop conditions, reversibility, and separate resource limits prevent reinforcing harm or analysis without action.",
+        "regenerative_seed": "A governed system map, indicator set, and review cadence reusable by later decisions.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "compute", "data", "materials", "energy"], "baseline_comparison": "Compare each material resource in its own unit with the current decision process.", "restoration": "Assign restoration for failed interventions and preserve the map as shared capacity."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Affected readers can restate the choice, main tradeoff, and stop condition."}
+      }
+    },
+    {
+      "id": "regenerative-language-bridge",
+      "name": "Regenerative Language Bridge",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Explain complex material in everyday language while retaining exact terms, evidence, uncertainty, caveats, and a check of real understanding.",
+      "summary_pt_br": "Explica conteúdo complexo em linguagem cotidiana, preservando termos exatos, evidências, incertezas, ressalvas e a verificação do entendimento real.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-language-bridge",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Reduces comprehension barriers while preserving the reader's path to technical depth.", "indicator": "Teach-back accuracy and successful independent next action."},
+          "social": {"mechanism": "Creates shared language between specialists and affected non-specialists.", "indicator": "Misunderstandings and avoidable clarification cycles at review."},
+          "knowledge": {"mechanism": "Pairs a plain layer with precise terms, evidence, caveats, and a reusable glossary.", "indicator": "Verified comprehension, glossary reuse, and corrected ambiguous terms."},
+          "resources": {"mechanism": "Designs information around the reader's attention and the maintainer's update cost.", "indicator": "Reading time, avoidable follow-up, and maintenance effort versus baseline."}
+        },
+        "harm_check": "The workflow checks all five lenses and forbids simplification that hides a material caveat or ecological consequence.",
+        "reinforcing_loop": "Reader feedback improves the glossary and explanation, making later understanding and contribution easier.",
+        "balancing_safeguard": "Teach-back, source preservation, and expiry dates stop false simplicity and stale certainty.",
+        "regenerative_seed": "A reusable, corrected glossary and two-layer explanation that lowers the cost of future learning.",
+        "resource_ledger": {"tracked": ["attention", "time", "data", "compute"], "baseline_comparison": "Compare reading, clarification, translation, and maintenance effort with the original material.", "restoration": "Return corrections to the shared glossary and retire explanations that no longer match the source."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Use teach-back or three audience-specific questions instead of relying on readability scores."}
+      }
+    },
+    {
+      "id": "regenerative-participatory-decision",
+      "name": "Regenerative Participatory Decision",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Design a fair, traceable decision in which affected people have clear influence, dissent is preserved, and every participant receives a response.",
+      "summary_pt_br": "Projeta uma decisão justa e rastreável na qual pessoas afetadas têm influência clara, divergências são preservadas e todos recebem retorno.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-participatory-decision",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Clarifies agency, access needs, consent, and the burden of participation.", "indicator": "Access barriers, participation burden, and informed withdrawal."},
+          "social": {"mechanism": "Makes authority, influence, dissent, commitments, and feedback closure visible.", "indicator": "Representation gaps, closed commitments, and trust after the decision."},
+          "knowledge": {"mechanism": "Gives participants a shared brief and preserves reasoning, uncertainty, and minority views.", "indicator": "Decision record completeness and assumptions corrected by participants."},
+          "resources": {"mechanism": "Uses the lightest legitimate participation mode and budgets access and follow-up.", "indicator": "Participant time, compensation, facilitation, and unresolved follow-up versus plan."}
+        },
+        "harm_check": "All five lenses are compared, including delayed ecological and resource costs, before applying the declared decision rule.",
+        "reinforcing_loop": "Visible influence and returned reasons build trust, improving participation and later decisions.",
+        "balancing_safeguard": "A fixed scope, deadline, minority protections, and reopening triggers limit capture and endless consultation.",
+        "regenerative_seed": "A reusable decision record, stronger participation capability, and accountable commitments.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "data"], "baseline_comparison": "Compare participation and implementation burden with the existing decision route.", "restoration": "Compensate material burden where appropriate and close or release every commitment at review."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Participants can state what they can influence, the rule, and how they will hear back."}
+      }
+    },
+    {
+      "id": "regenerative-listening-loop",
+      "name": "Regenerative Listening Loop",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Build an ethical listen–understand–act–report-back cycle that gives affected people real influence and avoids extractive consultation.",
+      "summary_pt_br": "Cria um ciclo ético de escutar, compreender, agir e devolver que oferece influência real e evita consultas extrativistas.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-listening-loop",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Uses consent, accessible channels, privacy, and explicit limits on what feedback can change.", "indicator": "Consent quality, access gaps, participant burden, and safeguarding events."},
+          "social": {"mechanism": "Validates findings with participants and returns action or reasons to everyone who contributed.", "indicator": "Response coverage, fulfilled actions, missing voices, and reported trust."},
+          "knowledge": {"mechanism": "Preserves themes, exceptions, dissent, provenance, and corrections instead of averaging them away.", "indicator": "Participant-validated themes, recorded exceptions, and corrections."},
+          "resources": {"mechanism": "Budgets participant attention, compensation, facilitation, data retention, and follow-up.", "indicator": "Actual burden and follow-up cost against the stated budget."}
+        },
+        "harm_check": "The process inspects all five lenses and stops when nothing can change or when burden and risk exceed likely value.",
+        "reinforcing_loop": "Listening followed by visible action grows trust and better evidence for the next action.",
+        "balancing_safeguard": "Influence boundaries, data minimization, fatigue limits, and protection of exceptions prevent extraction and majority dominance.",
+        "regenerative_seed": "A reusable action register, improved relationship, and feedback method corrected by participants.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "data", "compute"], "baseline_comparison": "Compare participant and organizer burden with the previous feedback route.", "restoration": "Return findings and value to participants, compensate where warranted, and delete data at expiry."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Participants can explain what was heard, what will change, who owns it, and when."}
+      }
+    },
+    {
+      "id": "regenerative-knowledge-commons",
+      "name": "Regenerative Knowledge Commons",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Turn project learning into accessible, reusable, rights-aware knowledge with provenance, stewardship, correction, contribution, and expiry paths.",
+      "summary_pt_br": "Transforma aprendizados em conhecimento acessível, reutilizável e atento a direitos, com proveniência, curadoria, correção, contribuição e validade.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-knowledge-commons",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Makes learning accessible to its legitimate audience and supports independent use.", "indicator": "Successful use, comprehension, and unresolved access barriers."},
+          "social": {"mechanism": "Keeps rights, attribution, collective benefit, authority, and contribution paths visible.", "indicator": "Credited contributions, governance issues, and value returned to knowledge holders."},
+          "knowledge": {"mechanism": "Adds provenance, precise terms, versioning, correction, reuse, and expiry to durable learning.", "indicator": "Successful reuse, corrections, provenance coverage, and stale assets retired."},
+          "resources": {"mechanism": "Reduces rediscovery while budgeting storage, compute, maintenance, privacy, and deletion.", "indicator": "Avoided repeated work and actual stewardship cost versus baseline."}
+        },
+        "harm_check": "All five lenses are inspected; open access never overrides privacy, collective rights, safety, or ecological cost.",
+        "reinforcing_loop": "Responsible reuse generates corrections and contributions that improve the shared asset for later reuse.",
+        "balancing_safeguard": "Access classes, stewards, version history, expiry, and deletion prevent stale, extractive, or excessive accumulation.",
+        "regenerative_seed": "A governed knowledge asset whose reuse, correction, and retirement paths survive a handoff.",
+        "resource_ledger": {"tracked": ["attention", "time", "data", "compute", "energy"], "baseline_comparison": "Compare rediscovery and handoff effort with storage, maintenance, retrieval, and review cost.", "restoration": "Return value to knowledge holders and delete or archive assets that no longer justify their cost."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "A legitimate new user can find, interpret, apply, question, and correct the asset."}
+      }
+    },
+    {
+      "id": "regenerative-resource-cycle",
+      "name": "Regenerative Resource Cycle",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Redesign a lifecycle by avoiding demand first, circulating resources safely, checking rebound, and committing to measurable restoration.",
+      "summary_pt_br": "Redesenha um ciclo de vida começando por evitar demanda, circular recursos com segurança, verificar o efeito rebote e restaurar de forma mensurável.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-resource-cycle",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Counts safety, accessibility, labor, maintenance, time, and attention across the lifecycle.", "indicator": "Hazard exposure, user burden, repair access, and unpaid work versus baseline."},
+          "social": {"mechanism": "Makes ownership, return paths, incentives, and exported burdens explicit.", "indicator": "Return participation, burden distribution, and community value retained."},
+          "knowledge": {"mechanism": "Leaves accessible repair, maintenance, material, and recovery instructions.", "indicator": "Successful repair and recovery using the documentation."},
+          "resources": {"mechanism": "Applies avoid-to-dispose hierarchy and measures unlike resources in separate ledgers.", "indicator": "Demand, lifetime, utilization, recovery, and waste by resource-specific unit."},
+          "ecology": {"mechanism": "Maps extraction, energy, water, toxicity, transport, recovery, and end-of-life effects.", "indicator": "Locally material ecological measure improves without an exported hotspot."}
+        },
+        "harm_check": "The whole lifecycle and all five lenses are checked for hazardous work, rebound, leakage, and exported waste.",
+        "reinforcing_loop": "Repairable design and shared recovery knowledge increase return and reuse, financing better maintenance and design.",
+        "balancing_safeguard": "Demand caps, resource budgets, hazard rules, and rebound triggers limit increased total use and unsafe circulation.",
+        "regenerative_seed": "A maintained return path, repair capability, and an explicit restoration commitment for the next cycle.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "data", "materials", "energy", "water"], "baseline_comparison": "Measure each material lifecycle flow in its own unit before and after the reversible pilot.", "restoration": "Restore a named resource or system function beyond avoided loss and verify it separately."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Users and maintainers can explain the return, repair, hazard, and rebound rules."}
+      }
+    },
+    {
+      "id": "regenerative-resilience-plan",
+      "name": "Regenerative Resilience Plan",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Prepare essential functions to prevent, absorb, adapt to, recover from, and learn through disruption without shifting risk to vulnerable people.",
+      "summary_pt_br": "Prepara funções essenciais para prevenir, absorver, adaptar-se, recuperar-se e aprender com rupturas sem transferir riscos a pessoas vulneráveis.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-resilience-plan",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Prioritizes essential needs, safety, accessibility, agency, and people hit first or recovering last.", "indicator": "Unmet essential needs, unsafe workload, access failures, and recovery time."},
+          "social": {"mechanism": "Distributes roles, decision rights, mutual aid, communication, and critical capability.", "indicator": "Single points of human failure, network reach, and mutual-aid activation."},
+          "knowledge": {"mechanism": "Uses scenarios and drills to turn surprises into updated shared practice.", "indicator": "Drill findings closed, assumptions corrected, and roles demonstrated."},
+          "resources": {"mechanism": "Creates proportionate reserves, redundancy, modularity, backups, and restoration plans.", "indicator": "Minimum service duration, reserve adequacy, recovery cost, and restoration completion."},
+          "ecology": {"mechanism": "Includes environmental hazards, dependencies, cascading effects, and maladaptation.", "indicator": "Locally relevant ecological thresholds and dependencies tested in scenarios."}
+        },
+        "harm_check": "All five lenses and compound scenarios are checked, with special attention to risks shifted onto vulnerable people or ecosystems.",
+        "reinforcing_loop": "Small drills expose gaps, shared learning improves readiness, and safer responses create better evidence for later drills.",
+        "balancing_safeguard": "Workload limits, decentralization, activation thresholds, stop rules, and maladaptation checks prevent brittle over-preparation.",
+        "regenerative_seed": "Distributed response capability, mutual-aid relationships, and a plan improved by every safe exercise.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "data", "materials", "energy", "water"], "baseline_comparison": "Compare prevention, reserve, response, and recovery needs with current capacity by scenario.", "restoration": "Define how services, reserves, affected people, and damaged living systems will be restored after activation."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Each role holder can state the trigger, first action, fallback, escalation, and recovery condition."}
+      }
+    },
+    {
+      "id": "regenerative-capability-exchange",
+      "name": "Regenerative Capability Exchange",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Create reciprocal exchanges that start from existing strengths and distribute practical capability instead of dependence on one expert.",
+      "summary_pt_br": "Cria trocas recíprocas que partem de capacidades existentes e distribuem habilidade prática em vez de dependência de um especialista.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-capability-exchange",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Combines demonstration, practice, teach-back, and independent action on a real task.", "indicator": "Calibrated performance, agency, and successful independent completion."},
+          "social": {"mechanism": "Maps gifts as well as needs and establishes voluntary, credited, accessible, reciprocal exchange.", "indicator": "Reciprocity, relationship diversity, access gaps, and concentrated burden."},
+          "knowledge": {"mechanism": "Rotates learner, teacher, documenter, and facilitator roles and preserves precise reusable guidance.", "indicator": "Peer-to-peer transfer, corrected guidance, and critical capabilities with multiple holders."},
+          "resources": {"mechanism": "Budgets preparation, compensation, access, tools, space, and follow-up.", "indicator": "Actual exchange cost and reduced dependency cost versus baseline."}
+        },
+        "harm_check": "All five lenses are inspected; cultural restrictions, ecological effects, unpaid expertise, gatekeeping, and safety-critical limits remain visible.",
+        "reinforcing_loop": "Learners become teachers and improve the shared guide, expanding the network's capacity to teach others.",
+        "balancing_safeguard": "Consent, fair compensation, workload caps, attribution, and competence checks prevent extraction and false confidence.",
+        "regenerative_seed": "More than one capable person, a reusable learning asset, and a reciprocal relationship able to continue without the initiator.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "materials", "energy"], "baseline_comparison": "Compare exchange cost with repeated outsourcing, bottleneck, and rediscovery costs.", "restoration": "Return value and credit to knowledge holders and replenish shared tools or spaces used by the exchange."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "A learner demonstrates the real task and can explain when to seek deeper expertise."}
+      }
+    },
+    {
+      "id": "regenerative-conflict-repair",
+      "name": "Regenerative Conflict Repair",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Assess safety before structuring voluntary conflict repair across immediate harm, relationships, procedures, and systemic causes.",
+      "summary_pt_br": "Avalia a segurança antes de estruturar reparação voluntária de conflitos nos danos imediatos, relações, procedimentos e causas sistêmicas.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-conflict-repair",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Places safety, consent, agency, impact, needs, accessibility, and exit rights before dialogue.", "indicator": "Safety events, voluntary continuation, burden, and recurrence of individual harm."},
+          "social": {"mechanism": "Links accountability and repair to relationship practices and structural prevention.", "indicator": "Commitments completed, recurrence, retaliation, and reported ability to coordinate safely."},
+          "knowledge": {"mechanism": "Separates observations, interpretations, disputed facts, patterns, and lessons without inventing certainty.", "indicator": "Disputed assumptions clarified and prevention learning incorporated into procedure."},
+          "resources": {"mechanism": "Budgets emotional labor, advocacy, facilitation, access, time, restitution, and follow-up.", "indicator": "Burden distribution, support delivered, and repair commitments completed."}
+        },
+        "harm_check": "A mandatory safety gate examines all five lenses and routes violence, coercion, retaliation, discrimination, and regulated matters away from informal dialogue.",
+        "reinforcing_loop": "Completed accountability and structural prevention can rebuild enough safety for earlier reporting and better prevention.",
+        "balancing_safeguard": "Separate consent, advocates, no-contact options, stop rules, formal routes, and private follow-up prevent coerced closure.",
+        "regenerative_seed": "A voluntary repair record and changed condition that reduces recurrence rather than merely ending discussion.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "data"], "baseline_comparison": "Compare repair and support burden with continuing harm, recurrence, and the appropriate formal route.", "restoration": "Complete agreed restitution or support and repair the procedure that allowed recurrence where authority permits."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Each participant can state rights, process, commitments, stop rules, confidentiality limits, and exit routes."}
+      }
+    },
+    {
+      "id": "regenerative-adaptive-experiment",
+      "name": "Regenerative Adaptive Experiment",
+      "kind": "skill",
+      "publisher": "eusourmr",
+      "category": "regenerative-core",
+      "summary_en": "Convert uncertainty into a small, reversible test with causal predictions, systemic measures, early harm detection, rollback, and reusable learning.",
+      "summary_pt_br": "Converte incerteza em teste pequeno e reversível, com previsão causal, medidas sistêmicas, detecção precoce de danos, reversão e aprendizado reutilizável.",
+      "url": "https://github.com/eusourmr/awesome-chatgpt-skills/tree/main/skills/regenerative-adaptive-experiment",
+      "provenance": "regenerative-core",
+      "license": "MIT",
+      "surfaces": ["chat", "codex"],
+      "checked_on": "2026-09-08",
+      "systemic_review": {
+        "status": "design-reviewed",
+        "lenses": {
+          "human": {"mechanism": "Limits exposure, obtains consent, designs access, and measures benefit and burden for affected people.", "indicator": "Outcome, access, workload, safety, and withdrawal measures by affected group."},
+          "social": {"mechanism": "Returns results and dissent to participants and assigns authority, ownership, and next decisions.", "indicator": "Participant feedback returned, commitments closed, and distributional effects reviewed."},
+          "knowledge": {"mechanism": "Tests an explicit causal prediction and preserves context, deviations, contrary results, and uncertainty.", "indicator": "Key uncertainty reduced and evidence reused by the next decision."},
+          "resources": {"mechanism": "Constrains the test's time, attention, money, compute, data, material, energy, and disruption.", "indicator": "Actual use by resource type versus test budget and baseline."}
+        },
+        "harm_check": "All five lenses receive balancing measures or explicit non-material findings before scale-up; unknown high-stakes harm stops the test.",
+        "reinforcing_loop": "Small tests generate reusable evidence that improves the next hypothesis and makes later tests safer and more informative.",
+        "balancing_safeguard": "Exposure limits, balancing measures, consent renewal, stop thresholds, rollback, and restoration prevent scale from outrunning learning.",
+        "regenerative_seed": "Reusable evidence, an improved method, and participant capability even when the hypothesis fails.",
+        "resource_ledger": {"tracked": ["attention", "time", "money", "compute", "data", "materials", "energy", "water"], "baseline_comparison": "Budget only material resource types, measure actual use in separate units, and compare with the current process.", "restoration": "Rollback the change, restore affected resources and access, and return learning when the stop rule fires."},
+        "plain_language": {"summary_first": true, "technical_layer": true, "comprehension_check": "Participants can state the hypothesis, exposure, measures, stop condition, rollback, and next decision."}
+      }
     }
   ]
 }

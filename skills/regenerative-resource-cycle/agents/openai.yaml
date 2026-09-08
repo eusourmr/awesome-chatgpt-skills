@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regenerative Resource Cycle"
+  short_description: "Turn resource use into restorative, circular flows"
+  default_prompt: "Use $regenerative-resource-cycle to redesign this lifecycle for less waste, safer circulation, and measurable restoration."
