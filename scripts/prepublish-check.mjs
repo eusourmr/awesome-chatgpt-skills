@@ -19,7 +19,7 @@ const expect = (condition, message) => {
 expect(pkg.name === 'chatgpt-skills', `package name must be chatgpt-skills, got ${pkg.name}`);
 expect(/^\d+\.\d+\.\d+$/.test(pkg.version), `package version must be semver, got ${pkg.version}`);
 expect(pkg.private === false, 'root package must be public');
-expect(pkg.bin?.['chatgpt-skills'] === './installer/index.js', 'chatgpt-skills bin must point to ./installer/index.js');
+expect(pkg.bin?.['chatgpt-skills'] === 'installer/index.js', 'chatgpt-skills bin must point to installer/index.js');
 expect(installerPkg.private === true, 'installer/package.json must remain private');
 expect(manifest.schema_version === 2, `manifest schema_version must be 2, got ${manifest.schema_version}`);
 expect(manifest.distribution === 'bundled', 'manifest distribution must be bundled');
