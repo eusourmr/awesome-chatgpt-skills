@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "repository": "eusourmr/chatgpt-skills",
-  "branch": "main",
+  "schema_version": 2,
+  "distribution": "bundled",
+  "source_repository": "eusourmr/chatgpt-skills",
   "skills": {
     "openai-agents-sdk-builder": {"path":"skills/featured/openai-agents-sdk-builder","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_agent.py"]},
     "realtime-api-integration": {"path":"skills/featured/realtime-api-integration","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_realtime.py"]},
