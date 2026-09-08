@@ -1,4 +1,4 @@
-# Awesome ChatGPT Skills
+# ChatGPT Skills
 
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![Validate catalog](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/awesome-chatgpt-skills/actions/workflows/validate.yml)
