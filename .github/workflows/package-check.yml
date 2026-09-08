@@ -2,18 +2,6 @@ name: Validate npm package
 
 on:
   pull_request:
-    paths:
-      - 'package.json'
-      - 'installer/**'
-      - 'skills/featured/**'
-      - 'skills/regenerative-*/**'
-      - 'trust/**'
-      - 'catalog.json'
-      - 'BUNDLES.md'
-      - 'scripts/**'
-      - 'sources/**'
-      - 'tests/**'
-      - '.github/workflows/package-check.yml'
   push:
     branches:
       - main
