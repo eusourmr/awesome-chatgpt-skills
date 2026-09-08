@@ -32,7 +32,8 @@ expect(trust.schema_version === 1, `trust schema_version must be 1, got ${trust.
 expect(trust.generated_for_package === pkg.version, `trust data must target package ${pkg.version}`);
 
 const skillIds = Object.keys(manifest.skills ?? {});
-expect(skillIds.length === 12, `v0.4.0 must bundle 12 skills, got ${skillIds.length}`);
+expect(skillIds.length === 13, `current package baseline must bundle 13 skills, got ${skillIds.length}`);
+expect(skillIds.includes('cs-navigator'), 'current package baseline must include cs-navigator');
 for (const [skillId, skill] of Object.entries(manifest.skills ?? {})) {
   expect(typeof skill.path === 'string' && skill.path.length > 0, `${skillId}: missing path`);
   expect(Array.isArray(skill.files) && skill.files.length > 0, `${skillId}: missing files`);
@@ -57,6 +58,7 @@ for (const [bundle, ids] of Object.entries(manifest.bundles ?? {})) {
   expect(Array.isArray(ids) && ids.length > 0, `${bundle}: bundle must contain skills`);
   for (const skillId of ids ?? []) expect(Boolean(manifest.skills?.[skillId]), `${bundle}: unknown skill ${skillId}`);
 }
+expect(Array.isArray(manifest.bundles?.['cs-core']) && manifest.bundles['cs-core'].length === 1 && manifest.bundles['cs-core'][0] === 'cs-navigator', 'cs-core bundle must contain only cs-navigator');
 
 for (const target of ['codex-cli', 'cursor', 'agents-portable', 'chatgpt-web']) {
   expect(Boolean(manifest.targets?.[target]), `missing target adapter metadata: ${target}`);
@@ -67,6 +69,8 @@ try { await access(path.join(root, 'installer/index.js')); }
 catch { errors.push('installer/index.js is missing'); }
 try { await access(path.join(root, 'trust/skills.json')); }
 catch { errors.push('trust/skills.json is missing'); }
+try { await access(path.join(root, 'skills/featured/cs-navigator/references/catalog-snapshot.json')); }
+catch { errors.push('CS Navigator snapshot is missing'); }
 
 if (errors.length) {
   console.error('Prepublish check failed:');
