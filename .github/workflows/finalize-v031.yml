@@ -1,0 +1,135 @@
+name: Finalize v0.3.1
+
+on:
+  push:
+    branches:
+      - automation/publish-v0.3.1
+    paths:
+      - '.github/workflows/finalize-v031.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Verify public npm CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(npm view chatgpt-skills@0.3.1 version)" = "0.3.1"
+          node - <<'NODE'
+          const { execFileSync } = require('node:child_process');
+          const raw = execFileSync('npm', ['view','chatgpt-skills@0.3.1','bin','--json'], {encoding:'utf8'});
+          const bin = JSON.parse(raw);
+          if (!bin || bin['chatgpt-skills'] !== 'installer/index.js') {
+            console.error('Unexpected npm bin metadata:', bin);
+            process.exit(1);
+          }
+          NODE
+          npx --yes chatgpt-skills@0.3.1 list
+          tmp=$(mktemp -d)
+          cd "$tmp"
+          npx --yes chatgpt-skills@0.3.1 install --bundle openai-ecosystem --tool codex-cli --yes
+          node -e "const c=require(process.cwd()+'/.chatgpt/skills-config.json'); if(c.package!=='chatgpt-skills'||c.package_version!=='0.3.1'||c.distribution!=='bundled'||c.enabled_skills.length!==4) process.exit(1); console.log(JSON.stringify(c,null,2))"
+
+      - name: Update release documentation
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          readme = Path('README.md')
+          text = readme.read_text(encoding='utf-8')
+          npm_badge = '[![npm](https://img.shields.io/npm/v/chatgpt-skills.svg)](https://www.npmjs.com/package/chatgpt-skills)'
+          catalog_badge = '[![Catalog](https://img.shields.io/badge/catalog-30%20skills-4c1.svg)](PROGRESS.md)'
+          if npm_badge not in text:
+              text = text.replace(catalog_badge, catalog_badge + '\n' + npm_badge)
+          old = '''The npm package must be published before that exact command resolves from the npm registry. Until then, run the repository package directly:\n\n```bash\nnpx github:eusourmr/chatgpt-skills install\n```'''
+          new = '''Published on npm as `chatgpt-skills`. Version `0.3.1` is the first recommended public CLI release; installation is reproducible because each package version bundles its own installable skills.\n\nRepository fallback:\n\n```bash\nnpx github:eusourmr/chatgpt-skills install\n```'''
+          text = text.replace(old, new)
+          readme.write_text(text, encoding='utf-8')
+
+          pt = Path('README.pt-BR.md')
+          text = pt.read_text(encoding='utf-8')
+          text = text.replace('# Awesome ChatGPT Skills\n', '# ChatGPT Skills\n', 1)
+          npm_badge_pt = '[![npm](https://img.shields.io/npm/v/chatgpt-skills.svg)](https://www.npmjs.com/package/chatgpt-skills)'
+          validate_badge = '[![Validar catálogo](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml)'
+          if npm_badge_pt not in text:
+              text = text.replace(validate_badge, validate_badge + '\n' + npm_badge_pt)
+          marker = '> Projeto comunitário independente. Não possui afiliação nem endosso da OpenAI. ChatGPT e Codex são marcas da OpenAI.\n'
+          section = '''\n## 🚀 Comece em 1 minuto\n\nInstalação interativa pelo npm:\n\n```bash\nnpx chatgpt-skills install\n```\n\nA versão `0.3.1` é a primeira release pública recomendada do CLI. Cada versão inclui suas próprias skills instaláveis, sem depender do conteúdo mutável da branch `main`.\n\nPara listar os bundles disponíveis:\n\n```bash\nnpx chatgpt-skills list\n```\n\nAlternativa direta pelo GitHub:\n\n```bash\nnpx github:eusourmr/chatgpt-skills install\n```\n'''
+          if '## 🚀 Comece em 1 minuto' not in text:
+              text = text.replace(marker, marker + section)
+          pt.write_text(text, encoding='utf-8')
+
+          changelog = Path('CHANGELOG.md')
+          text = changelog.read_text(encoding='utf-8')
+          bullet = '- Published `0.3.1` through npm Trusted Publishing (GitHub Actions OIDC), eliminating long-lived npm write tokens from the release path.\n'
+          anchor = '## 0.3.1 — 2026-09-08\n\n### Fixed\n\n'
+          if bullet not in text:
+              text = text.replace(anchor, anchor + bullet)
+          changelog.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit documentation to main
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md README.pt-BR.md CHANGELOG.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Finalize public npm release v0.3.1'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release v0.3.1
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.commit.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v0.3.1 --repo eusourmr/chatgpt-skills >/dev/null 2>&1; then
+            echo 'Release v0.3.1 already exists.'
+            exit 0
+          fi
+          cat > /tmp/release-notes.md <<'EOF'
+          ## ChatGPT Skills v0.3.1
+
+          First recommended public CLI release of ChatGPT Skills.
+
+          ### Highlights
+          - Install with `npx chatgpt-skills install`
+          - List bundles with `npx chatgpt-skills list`
+          - 12 bundled installable skills across 5 curated bundles
+          - Deterministic, versioned installation with `.chatgpt/skills-config.json`
+          - npm publication through GitHub Actions Trusted Publishing (OIDC)
+          - 30-entry curated catalog with provenance kept distinct: OpenAI-published, project-verified and community-authored
+          - Four OpenAI-native featured production skills
+          - Regenerative core governed by the project’s systemic design standard
+
+          ### Note about 0.3.0
+          `0.3.0` was the initial npm package claim but was published without a usable CLI `bin` entry. Use `0.3.1` or newer.
+
+          ### Integrity
+          Independent community project. Not affiliated with or endorsed by OpenAI. “Official” refers only to attributable OpenAI provenance in catalog entries.
+          EOF
+          gh release create v0.3.1 --repo eusourmr/chatgpt-skills --target "$RELEASE_SHA" --title 'ChatGPT Skills v0.3.1' --notes-file /tmp/release-notes.md
