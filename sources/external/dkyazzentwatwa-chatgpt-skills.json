@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_type": "github-skill-repository",
+  "repository": "dkyazzentwatwa/chatgpt-skills",
+  "source_url": "https://github.com/dkyazzentwatwa/chatgpt-skills",
+  "immutable_ref": "103b4308f65df393e76765cb1ce12395d9cf5106",
+  "default_branch": "main",
+  "last_push": "2026-04-08T00:45:38Z",
+  "license": "unresolved",
+  "discovery_state": "indexed",
+  "trust_state": "not-evaluated",
+  "skill_count": 12,
+  "skills": [
+    {"id":"crypto-ta-analyzer","path":"crypto-ta-analyzer","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"data-storyteller","path":"data-storyteller","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"document-converter-suite","path":"document-converter-suite","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"financial-calculator","path":"financial-calculator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"geo-toolkit","path":"geo-toolkit","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"image-enhancement-suite","path":"image-enhancement-suite","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"media-toolkit","path":"media-toolkit","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"mcp-builder","path":"mcp-builder","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"ocr-document-processor","path":"ocr-document-processor","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"qr-code-generator","path":"qr-code-generator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"skill-creator","path":"skill-creator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false},
+    {"id":"svg-precision-skill","path":"svg-precision-skill","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface","source_owned":true,"copied_into_cs":false}
+  ],
+  "warnings": [
+    "license-unresolved",
+    "openai-yaml-legacy-shape",
+    "stale-audit-count"
+  ],
+  "policy": "Metadata-only discovery record. No external skill content is copied and no positive trust state is inferred from source claims."
+}
