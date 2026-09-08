@@ -1,7 +1,14 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "distribution": "bundled",
   "source_repository": "eusourmr/chatgpt-skills",
+  "trust_file": "trust/skills.json",
+  "targets": {
+    "codex-cli": {"mode":"install","project":".codex/skills","user":"$CODEX_HOME/skills or ~/.codex/skills"},
+    "cursor": {"mode":"install","project":".cursor/skills","user":"~/.cursor/skills"},
+    "agents-portable": {"mode":"install","project":".agents/skills","user":"~/.agents/skills"},
+    "chatgpt-web": {"mode":"export","project":".chatgpt-skills/export/skills","user":null}
+  },
   "skills": {
     "openai-agents-sdk-builder": {"path":"skills/featured/openai-agents-sdk-builder","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_agent.py"]},
     "realtime-api-integration": {"path":"skills/featured/realtime-api-integration","files":["SKILL.md","agents/openai.yaml","scripts/scaffold_realtime.py"]},
