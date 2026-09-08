@@ -1,0 +1,24 @@
+{
+  "repository": "dkyazzentwatwa/chatgpt-skills",
+  "source_url": "https://github.com/dkyazzentwatwa/chatgpt-skills",
+  "immutable_ref": "103b4308f65df393e76765cb1ce12395d9cf5106",
+  "default_branch": "main",
+  "last_push": "2026-04-08T00:45:38Z",
+  "license": null,
+  "license_file_detected": false,
+  "audit_claimed_skill_count": 100,
+  "skills": [
+    {"id":"crypto-ta-analyzer","path":"crypto-ta-analyzer","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"data-storyteller","path":"data-storyteller","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"document-converter-suite","path":"document-converter-suite","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"financial-calculator","path":"financial-calculator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"geo-toolkit","path":"geo-toolkit","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"image-enhancement-suite","path":"image-enhancement-suite","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"media-toolkit","path":"media-toolkit","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"mcp-builder","path":"mcp-builder","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"ocr-document-processor","path":"ocr-document-processor","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"qr-code-generator","path":"qr-code-generator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"skill-creator","path":"skill-creator","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"},
+    {"id":"svg-precision-skill","path":"svg-precision-skill","has_skill_md":true,"openai_yaml_shape":"legacy-flat-interface"}
+  ]
+}
