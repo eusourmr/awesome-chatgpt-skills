@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "jobs": [
+    {
+      "id": "plain-technical-explanation",
+      "prompt": "I need to explain an API retry policy to non-technical managers without losing the technical caveats.",
+      "expected_skills": ["regenerative-language-bridge"],
+      "reason": "One chat-native skill covers the job; adding more would be unnecessary overlap."
+    },
+    {
+      "id": "small-reversible-test",
+      "prompt": "We are uncertain whether a new onboarding flow helps. Design the smallest safe experiment that teaches us something.",
+      "expected_skills": ["regenerative-adaptive-experiment"],
+      "reason": "The job is primarily reversible experimentation and learning."
+    },
+    {
+      "id": "system-impact-decision",
+      "prompt": "Before changing our office policy, map the human, resource and social spillovers and identify leverage points.",
+      "expected_skills": ["regenerative-impact-map"],
+      "reason": "The impact map alone covers the requested system-level analysis."
+    },
+    {
+      "id": "service-disruption-resilience",
+      "prompt": "Build a resilience plan for recurring service outages so the team can prevent, absorb, recover and learn.",
+      "expected_skills": ["regenerative-resilience-plan"],
+      "reason": "The requested outcome maps directly to the resilience workflow."
+    },
+    {
+      "id": "agents-sdk-starter",
+      "prompt": "Create a minimal OpenAI Agents SDK starter project with sensible production hardening guidance.",
+      "expected_skills": ["openai-agents-sdk-builder"],
+      "reason": "The deterministic scaffold requires the local-agent skill; a chat-native alternative would not perform the same complete job."
+    },
+    {
+      "id": "coverage-gap",
+      "prompt": "Reconcile my cryptocurrency tax lots across five exchanges and file the tax return for me.",
+      "expected_skills": [],
+      "reason": "The current bundled CS snapshot does not contain a trusted skill that completes this job; the Navigator should report a coverage gap rather than invent one."
+    }
+  ]
+}
