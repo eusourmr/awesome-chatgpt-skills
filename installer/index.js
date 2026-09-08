@@ -11,6 +11,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(here, '..');
 const manifest = JSON.parse(await readFile(path.join(here, 'manifest.json'), 'utf8'));
 const trust = JSON.parse(await readFile(path.join(packageRoot, 'trust', 'skills.json'), 'utf8'));
+const execution = JSON.parse(await readFile(path.join(packageRoot, 'trust', 'execution.json'), 'utf8'));
 const packageMeta = JSON.parse(await readFile(path.join(packageRoot, 'package.json'), 'utf8'));
 const args = process.argv.slice(2);
 const command = args[0] && !args[0].startsWith('-') ? args[0] : 'install';
@@ -115,6 +116,7 @@ if (command === 'inspect') {
     console.error(`Evidence Card não encontrada para: ${skillId}`);
     process.exit(1);
   }
+  const executionCard = execution.skills?.[skillId];
   const card = {
     ...trust.defaults,
     ...rawCard,
@@ -135,6 +137,14 @@ if (command === 'inspect') {
   console.log(`Integridade: ${card.integrity.state} — ${card.integrity.basis}`);
   console.log(`Permissões: arquivos=${card.permissions.local_files}; rede=${card.permissions.network}; segredos=${card.permissions.secrets}; processos=${card.permissions.process_execution}`);
   console.log(`Segurança: ${card.security.state} — ${card.security.notes}`);
+  if (executionCard) {
+    console.log(`Execução: ${executionCard.mode} — evidência=${executionCard.evidence_state}`);
+    console.log(`Setup mínimo: ${executionCard.minimum_setup}`);
+    console.log(`Capacidades obrigatórias: ${executionCard.required_capabilities.length ? executionCard.required_capabilities.join(', ') : 'nenhuma'}`);
+    console.log(`Evidência de execução: ${executionCard.evidence}`);
+  } else {
+    console.log('Execução: unknown — sem classificação registrada');
+  }
   console.log('Compatibilidade:');
   for (const item of card.compatibility) console.log(`- ${item.surface}: ${item.state} — ${item.evidence}`);
   if (card.external_capabilities?.length) {
