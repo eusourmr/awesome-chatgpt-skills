@@ -26,4 +26,4 @@ This remains an independent community project and is not affiliated with or endo
 
 ## Next
 
-The next release cycle should focus on compatibility testing, public review records, and publishing the CLI package so `npx awesome-chatgpt-skills install` works directly from npm without the GitHub fallback.
+The next release cycle should focus on compatibility testing, public review records, and publishing the CLI package so `npx chatgpt-skills install` works directly from npm without the GitHub fallback.
