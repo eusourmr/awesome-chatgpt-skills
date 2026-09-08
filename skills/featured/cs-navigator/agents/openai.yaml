@@ -1,0 +1,4 @@
+interface:
+  display_name: "CS Navigator"
+  short_description: "Find the smallest evidence-backed skill set"
+  default_prompt: "Use $cs-navigator to recommend the smallest useful ChatGPT Skills set for what I want to accomplish."
