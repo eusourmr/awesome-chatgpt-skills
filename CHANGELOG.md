@@ -6,6 +6,7 @@ All notable changes to ChatGPT Skills are documented here.
 
 ### Fixed
 
+- Published `0.3.1` through npm Trusted Publishing (GitHub Actions OIDC), eliminating long-lived npm write tokens from the release path.
 - Restored the npm executable mapping so `npx chatgpt-skills ...` resolves to `installer/index.js` under npm 11.
 - Kept the Node-only prepublish gate so Windows maintainers do not need Python just to publish the package.
 - Confirmed the packaged CLI and bundled installation path in GitHub Actions before release.

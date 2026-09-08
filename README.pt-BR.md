@@ -1,7 +1,8 @@
-# Awesome ChatGPT Skills
+# ChatGPT Skills
 
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![Validar catálogo](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml)
+[![npm](https://img.shields.io/npm/v/chatgpt-skills.svg)](https://www.npmjs.com/package/chatgpt-skills)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 
 Um diretório selecionado e conferido de skills reutilizáveis e plugins orientados por skills para ChatGPT e Codex, com um núcleo regenerativo auditável.
@@ -9,6 +10,28 @@ Um diretório selecionado e conferido de skills reutilizáveis e plugins orienta
 [English](README.md)
 
 > Projeto comunitário independente. Não possui afiliação nem endosso da OpenAI. ChatGPT e Codex são marcas da OpenAI.
+
+## 🚀 Comece em 1 minuto
+
+Instalação interativa pelo npm:
+
+```bash
+npx chatgpt-skills install
+```
+
+A versão `0.3.1` é a primeira release pública recomendada do CLI. Cada versão inclui suas próprias skills instaláveis, sem depender do conteúdo mutável da branch `main`.
+
+Para listar os bundles disponíveis:
+
+```bash
+npx chatgpt-skills list
+```
+
+Alternativa direta pelo GitHub:
+
+```bash
+npx github:eusourmr/chatgpt-skills install
+```
 
 ## Por que esta lista existe
 

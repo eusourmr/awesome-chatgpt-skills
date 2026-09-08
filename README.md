@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Curation](https://img.shields.io/badge/curation-human--governed-2f6f4e.svg)](CONTRIBUTING.md)
 [![Catalog](https://img.shields.io/badge/catalog-30%20skills-4c1.svg)](PROGRESS.md)
+[![npm](https://img.shields.io/npm/v/chatgpt-skills.svg)](https://www.npmjs.com/package/chatgpt-skills)
 [![Standard](https://img.shields.io/badge/Agent%20Skills-agentskills.io-6f42c1.svg)](https://agentskills.io/)
 
 **The curated skills catalog for the OpenAI ecosystem.** Unlike a flat community list, entries here are source-checked, categorized by use case, mapped to the open Agent Skills format, and separated by provenance: OpenAI-published, independently verified, or community-authored.
@@ -44,7 +45,9 @@ Interactive install:
 npx chatgpt-skills install
 ```
 
-The npm package must be published before that exact command resolves from the npm registry. Until then, run the repository package directly:
+Published on npm as `chatgpt-skills`. Version `0.3.1` is the first recommended public CLI release; installation is reproducible because each package version bundles its own installable skills.
+
+Repository fallback:
 
 ```bash
 npx github:eusourmr/chatgpt-skills install
