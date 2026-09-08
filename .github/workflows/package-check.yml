@@ -101,10 +101,12 @@ jobs:
           npm install "$GITHUB_WORKSPACE/${{ steps.pack.outputs.tarball }}" >/dev/null
           CLI="$PWD/node_modules/.bin/chatgpt-skills"
 
-          "$CLI" list
+          "$CLI" list | tee list.log
+          grep -q 'cs-core: cs-navigator' list.log
           "$CLI" inspect openai-agents-sdk-builder | grep -q 'Recomendação: conditional'
           "$CLI" inspect openai-agents-sdk-builder | grep -q 'Execução: local-agent — evidência=tested'
           "$CLI" inspect regenerative-language-bridge | grep -q 'Execução: chat-native — evidência=designed'
+          "$CLI" inspect cs-navigator | grep -q 'Execução: chat-native — evidência=designed'
           "$CLI" inspect chatgpt-apps-deployer | grep -q 'Integridade: tested'
           "$CLI" inspect dkyazzentwatwa/chatgpt-skills | grep -q 'Confiança: not-evaluated'
           "$CLI" inspect https://github.com/dkyazzentwatwa/chatgpt-skills | grep -q 'Licença: unresolved'
@@ -172,3 +174,32 @@ jobs:
             echo 'doctor failed to detect modified ChatGPT upload ZIP'
             exit 1
           fi
+
+          mkdir -p /tmp/chatgpt-skills-smoke/navigator
+          cd /tmp/chatgpt-skills-smoke/navigator
+          "$CLI" install --skill cs-navigator --tool chatgpt-web --scope project --yes | tee navigator.log
+          test -f .chatgpt-skills/export/skills/cs-navigator/SKILL.md
+          test -f .chatgpt-skills/export/skills/cs-navigator/agents/openai.yaml
+          test -f .chatgpt-skills/export/skills/cs-navigator/references/catalog-snapshot.json
+          test -f .chatgpt-skills/export/packages/cs-navigator.zip
+          grep -q 'cs-navigator.zip' navigator.log
+
+          python - <<'PY'
+          from zipfile import ZipFile
+          from pathlib import Path
+          p = Path('.chatgpt-skills/export/packages/cs-navigator.zip')
+          with ZipFile(p) as z:
+              names = z.namelist()
+              assert z.testzip() is None
+              snapshot = z.read('cs-navigator/references/catalog-snapshot.json')
+              assert b'"cs-navigator"' in snapshot
+              assert b'"not-evaluated"' in snapshot
+          expected = [
+              'cs-navigator/SKILL.md',
+              'cs-navigator/agents/openai.yaml',
+              'cs-navigator/references/catalog-snapshot.json',
+          ]
+          assert names == expected, (names, expected)
+          PY
+
+          "$CLI" doctor
