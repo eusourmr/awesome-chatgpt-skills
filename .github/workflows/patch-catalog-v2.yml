@@ -1,0 +1,46 @@
+name: Upgrade catalog schema v2
+
+on:
+  push:
+    branches:
+      - release/v0.4.0
+    paths:
+      - '.github/workflows/patch-catalog-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: release/v0.4.0
+      - name: Patch catalog.json
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('catalog.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          data['schema_version'] = 2
+          data['evidence_model'] = {
+              'tiers': ['indexed', 'source-checked', 'tested', 'recommended'],
+              'bundled_cards': 'trust/skills.json',
+              'trust_claim_policy': 'evidence-not-popularity',
+              'note': 'Catalog inclusion and provenance status are distinct from Trust Layer evidence states; popularity does not imply testing or recommendation.'
+          }
+          p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+      - name: Validate schema v2
+        run: python scripts/validate_catalog.py
+      - name: Commit schema upgrade
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add catalog.json
+          git commit -m 'Upgrade quality catalog to schema v2'
+          git push origin HEAD:release/v0.4.0
