@@ -80,6 +80,7 @@ jobs:
           if (!requiredWarnings.every((warning) => x.warnings.includes(warning))) process.exit(1);
           if (x.skills.some((skill) => skill.copied_into_cs !== false || skill.source_owned !== true)) process.exit(1);
           NODE
+          cmp /tmp/external-source.json sources/external/dkyazzentwatwa-chatgpt-skills.json
 
       - name: Build npm tarball
         id: pack
@@ -105,6 +106,8 @@ jobs:
           "$CLI" inspect openai-agents-sdk-builder | grep -q 'Execução: local-agent — evidência=tested'
           "$CLI" inspect regenerative-language-bridge | grep -q 'Execução: chat-native — evidência=designed'
           "$CLI" inspect chatgpt-apps-deployer | grep -q 'Integridade: tested'
+          "$CLI" inspect dkyazzentwatwa/chatgpt-skills | grep -q 'Confiança: not-evaluated'
+          "$CLI" inspect https://github.com/dkyazzentwatwa/chatgpt-skills | grep -q 'Licença: unresolved'
 
           mkdir -p /tmp/chatgpt-skills-smoke/codex
           cd /tmp/chatgpt-skills-smoke/codex
