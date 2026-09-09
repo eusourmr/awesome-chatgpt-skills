@@ -53,10 +53,10 @@ Para listar bundles e destinos:
 npx chatgpt-skills list
 ```
 
-Alternativa direta pelo GitHub:
+Alternativa direta pelo GitHub (compatível com npm 12; acesso Git liberado somente neste comando):
 
 ```bash
-npx github:eusourmr/chatgpt-skills install
+npx --allow-git=root github:eusourmr/chatgpt-skills install
 ```
 
 ## Por que esta lista existe

@@ -37,8 +37,10 @@ The public npm release is still `0.4.0` and does not contain CS Navigator. Do no
 Use the exact repository revision that introduced the evidence gate:
 
 ```bash
-npx --yes github:eusourmr/chatgpt-skills#8b814c93980175fa61da141d659cfa28a8e6bd92 install --skill cs-navigator --tool chatgpt-web --yes
+npx --yes --allow-git=root github:eusourmr/chatgpt-skills#8b814c93980175fa61da141d659cfa28a8e6bd92 install --skill cs-navigator --tool chatgpt-web --yes
 ```
+
+npm 12 defaults Git fetching to disabled. `--allow-git=root` opts in only for the explicitly requested root Git package for this command; do not change the global npm policy.
 
 This should create:
 
