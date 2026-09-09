@@ -37,6 +37,7 @@ for (const [i, plan] of (tests.tests || []).entries()) {
   if (plan.surface !== 'chatgpt-skills') errors.push(`${where}.surface must be chatgpt-skills for in-product chat-native proof`);
   if (!distributions.has(plan.required_distribution)) errors.push(`${where}.required_distribution must be npm, github-pinned, or local`);
   if (!isCommit(plan.required_source_revision)) errors.push(`${where}.required_source_revision must be a full lowercase 40-character commit SHA`);
+  if (!isSha256(plan.required_artifact_sha256)) errors.push(`${where}.required_artifact_sha256 must be a lowercase SHA-256`);
   if (!Number.isInteger(plan.minimum_cases) || plan.minimum_cases < 1) errors.push(`${where}.minimum_cases must be a positive integer`);
   if (!Array.isArray(plan.cases) || plan.cases.length < plan.minimum_cases) {
     errors.push(`${where}.cases must meet minimum_cases`);
@@ -73,6 +74,7 @@ for (const [i, run] of (runs.runs || []).entries()) {
   if (!isCommit(run.source_revision)) errors.push(`${where}.source_revision must be a full lowercase 40-character commit SHA`);
   if (plan && run.source_revision !== plan.required_source_revision) errors.push(`${where}.source_revision must match test plan source revision ${plan.required_source_revision}`);
   if (!isSha256(run.artifact_sha256)) errors.push(`${where}.artifact_sha256 must be a lowercase SHA-256`);
+  if (plan && run.artifact_sha256 !== plan.required_artifact_sha256) errors.push(`${where}.artifact_sha256 must match test plan artifact ${plan.required_artifact_sha256}`);
   if (!uniqueStrings(run.case_ids)) errors.push(`${where}.case_ids must be a unique array of strings`);
   if (!Array.isArray(run.assertions) || run.assertions.length === 0) errors.push(`${where}.assertions are required`);
 
