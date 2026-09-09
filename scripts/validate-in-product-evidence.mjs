@@ -28,16 +28,20 @@ for (const [i, plan] of (tests.tests || []).entries()) {
   if (!isString(plan.skill_id)) errors.push(`${where}.skill_id is required`);
   if (plans.has(plan.id)) errors.push(`duplicate test plan id: ${plan.id}`);
   plans.set(plan.id, plan);
+
   const skillExecution = execution.skills?.[plan.skill_id];
   if (!skillExecution) errors.push(`${where} references unknown execution skill ${plan.skill_id}`);
   if (skillExecution && skillExecution.mode !== plan.execution_mode) {
     errors.push(`${where}.execution_mode does not match trust/execution.json`);
   }
   if (plan.surface !== 'chatgpt-skills') errors.push(`${where}.surface must be chatgpt-skills for in-product chat-native proof`);
+  if (!distributions.has(plan.required_distribution)) errors.push(`${where}.required_distribution must be npm, github-pinned, or local`);
+  if (!isCommit(plan.required_source_revision)) errors.push(`${where}.required_source_revision must be a full lowercase 40-character commit SHA`);
   if (!Number.isInteger(plan.minimum_cases) || plan.minimum_cases < 1) errors.push(`${where}.minimum_cases must be a positive integer`);
   if (!Array.isArray(plan.cases) || plan.cases.length < plan.minimum_cases) {
     errors.push(`${where}.cases must meet minimum_cases`);
   }
+
   const caseIds = new Set();
   for (const [j, c] of (plan.cases || []).entries()) {
     const cWhere = `${where}.cases[${j}]`;
@@ -62,21 +66,32 @@ for (const [i, run] of (runs.runs || []).entries()) {
   if (!['pass', 'fail'].includes(run.result)) errors.push(`${where}.result must be pass or fail`);
   if (!isString(run.executed_at) || Number.isNaN(Date.parse(run.executed_at))) errors.push(`${where}.executed_at must be an ISO date/time`);
   if (!isString(run.product_surface)) errors.push(`${where}.product_surface is required`);
+  if (plan && run.product_surface !== plan.surface) errors.push(`${where}.product_surface must exactly match test plan surface ${plan.surface}`);
   if (!isString(run.package_version)) errors.push(`${where}.package_version is required`);
   if (!distributions.has(run.distribution)) errors.push(`${where}.distribution must be npm, github-pinned, or local`);
+  if (plan && run.distribution !== plan.required_distribution) errors.push(`${where}.distribution must match test plan distribution ${plan.required_distribution}`);
   if (!isCommit(run.source_revision)) errors.push(`${where}.source_revision must be a full lowercase 40-character commit SHA`);
+  if (plan && run.source_revision !== plan.required_source_revision) errors.push(`${where}.source_revision must match test plan source revision ${plan.required_source_revision}`);
   if (!isSha256(run.artifact_sha256)) errors.push(`${where}.artifact_sha256 must be a lowercase SHA-256`);
   if (!uniqueStrings(run.case_ids)) errors.push(`${where}.case_ids must be a unique array of strings`);
   if (!Array.isArray(run.assertions) || run.assertions.length === 0) errors.push(`${where}.assertions are required`);
+
+  const assertionCaseIds = new Set();
   for (const [j, a] of (run.assertions || []).entries()) {
     if (!isString(a.case_id) || typeof a.pass !== 'boolean' || !isString(a.observed)) {
       errors.push(`${where}.assertions[${j}] requires case_id, boolean pass, and observed text`);
+      continue;
     }
+    if (assertionCaseIds.has(a.case_id)) errors.push(`${where}.assertions contains duplicate case_id ${a.case_id}`);
+    assertionCaseIds.add(a.case_id);
   }
+
   if (run.result === 'pass') {
     const expectedCases = new Set((plan?.cases || []).map((c) => c.id));
     const covered = new Set(run.case_ids || []);
     if (plan && [...expectedCases].some((id) => !covered.has(id))) errors.push(`${where} pass result does not cover every planned case`);
+    if (plan && [...expectedCases].some((id) => !assertionCaseIds.has(id))) errors.push(`${where} pass result does not include an assertion for every planned case`);
+    if (plan && [...assertionCaseIds].some((id) => !expectedCases.has(id))) errors.push(`${where} assertions include an unknown case_id`);
     if ((run.assertions || []).some((a) => a.pass !== true)) errors.push(`${where} pass result contains a failed assertion`);
     passingBySkill.add(run.skill_id);
   }
