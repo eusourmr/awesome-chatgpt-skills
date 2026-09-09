@@ -12,7 +12,9 @@ const execution = JSON.parse(fs.readFileSync(path.join(root, 'trust/execution.js
 const errors = [];
 const isString = (v) => typeof v === 'string' && v.trim().length > 0;
 const isSha256 = (v) => typeof v === 'string' && /^[a-f0-9]{64}$/.test(v);
+const isCommit = (v) => typeof v === 'string' && /^[a-f0-9]{40}$/.test(v);
 const uniqueStrings = (v) => Array.isArray(v) && v.every(isString) && new Set(v).size === v.length;
+const distributions = new Set(['npm', 'github-pinned', 'local']);
 
 if (tests.schema_version !== 1) errors.push('trust/in-product-tests.json schema_version must be 1');
 if (runs.schema_version !== 1) errors.push('trust/in-product-runs.json schema_version must be 1');
@@ -61,6 +63,8 @@ for (const [i, run] of (runs.runs || []).entries()) {
   if (!isString(run.executed_at) || Number.isNaN(Date.parse(run.executed_at))) errors.push(`${where}.executed_at must be an ISO date/time`);
   if (!isString(run.product_surface)) errors.push(`${where}.product_surface is required`);
   if (!isString(run.package_version)) errors.push(`${where}.package_version is required`);
+  if (!distributions.has(run.distribution)) errors.push(`${where}.distribution must be npm, github-pinned, or local`);
+  if (!isCommit(run.source_revision)) errors.push(`${where}.source_revision must be a full lowercase 40-character commit SHA`);
   if (!isSha256(run.artifact_sha256)) errors.push(`${where}.artifact_sha256 must be a lowercase SHA-256`);
   if (!uniqueStrings(run.case_ids)) errors.push(`${where}.case_ids must be a unique array of strings`);
   if (!Array.isArray(run.assertions) || run.assertions.length === 0) errors.push(`${where}.assertions are required`);
