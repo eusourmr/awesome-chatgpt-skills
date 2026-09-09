@@ -1,5 +1,8 @@
 # ChatGPT Skills
 
+<img width="1774" height="887" alt="banner" src="https://github.com/user-attachments/assets/b10b8ed4-5a88-485a-a5d0-198420ea9709" />
+
+
 [![Validate catalog](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/eusourmr/chatgpt-skills/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Curation](https://img.shields.io/badge/curation-human--governed-2f6f4e.svg)](CONTRIBUTING.md)
