@@ -10,12 +10,13 @@ A `chat-native` skill may move from `designed` to `tested` only when all of the 
 
 1. a versioned test plan in `trust/in-product-tests.json`;
 2. the exact SHA-256 of the uploaded skill artifact;
-3. package/repository version or immutable source revision;
-4. the ChatGPT product surface used;
-5. execution date/time;
-6. every required case from the plan;
-7. an observed result for every assertion;
-8. a final `pass` with no failed assertion.
+3. distribution type and immutable source revision;
+4. package version recorded by that source;
+5. the ChatGPT product surface used;
+6. execution date/time;
+7. every required case from the plan;
+8. an observed result for every assertion;
+9. a final `pass` with no failed assertion.
 
 The machine-readable run is stored in `trust/in-product-runs.json`.
 
@@ -29,16 +30,27 @@ The intended flow is deliberately simple:
 
 No server, API key, MCP gateway, external account, or local runtime is part of the Navigator's core test.
 
-### Prepare the artifact
+### Prepare the pre-release artifact
+
+The public npm release is still `0.4.0` and does not contain CS Navigator. Do not use unpinned `npx chatgpt-skills` for this pre-release proof.
+
+Use the exact repository revision that introduced the evidence gate:
 
 ```bash
-npx chatgpt-skills install --skill cs-navigator --tool chatgpt-web --yes
+npx --yes github:eusourmr/chatgpt-skills#8b814c93980175fa61da141d659cfa28a8e6bd92 install --skill cs-navigator --tool chatgpt-web --yes
 ```
 
-Record the SHA-256 of:
+This should create:
 
 ```text
 .chatgpt-skills/export/packages/cs-navigator.zip
+```
+
+Record the SHA-256 of that exact ZIP. The evidence run must use:
+
+```text
+distribution: github-pinned
+source_revision: 8b814c93980175fa61da141d659cfa28a8e6bd92
 ```
 
 Upload that exact ZIP to a ChatGPT surface that supports custom Skills.
@@ -49,7 +61,7 @@ Run every prompt from `trust/in-product-tests.json` in the qualifying ChatGPT Sk
 
 ### Record the run
 
-Append one run object to `trust/in-product-runs.json` with the exact artifact hash and observed evidence. Do not edit `trust/execution.json` to `tested` before this run validates.
+Append one run object to `trust/in-product-runs.json` with the exact artifact hash, immutable source revision, product surface, and observed evidence. Do not edit `trust/execution.json` to `tested` before this run validates.
 
 After a passing run is committed, the execution evidence may be promoted in a separate reviewed change. CI enforces that a `chat-native/tested` claim cannot exist without a passing in-product run.
 
