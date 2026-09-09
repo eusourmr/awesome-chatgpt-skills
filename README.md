@@ -77,10 +77,10 @@ For ChatGPT, the CLI prepares files for manual upload and **does not claim direc
 npx chatgpt-skills install --bundle openai-ecosystem --tool chatgpt-web --yes
 ```
 
-Repository fallback:
+Repository fallback (npm 12-safe; Git access is enabled only for this command):
 
 ```bash
-npx github:eusourmr/chatgpt-skills install
+npx --allow-git=root github:eusourmr/chatgpt-skills install
 ```
 
 See all curated packages in [`BUNDLES.md`](BUNDLES.md).
