@@ -9,6 +9,7 @@
       "execution_mode": "chat-native",
       "required_distribution": "github-pinned",
       "required_source_revision": "8b814c93980175fa61da141d659cfa28a8e6bd92",
+      "required_artifact_sha256": "1851dcc33a462f0a7503d42f2a5b0d5a4a27a8fe2e3977872da4d3c876e07f68",
       "minimum_cases": 6,
       "cases": [
         {
