@@ -17,7 +17,8 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: fix/npm12-git-pre-release
-      - name: Update docs and npm 12 compatibility gate
+
+      - name: Update npm 12-safe Git commands
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -50,18 +51,24 @@ jobs:
                       raise SystemExit(f'missing expected text in {path}: {old}')
                   text = text.replace(old, new, 1)
               path.write_text(text, encoding='utf-8')
-
-          workflow = Path('.github/workflows/package-check.yml')
-          text = workflow.read_text(encoding='utf-8')
-          marker = '      - name: Prove npm 12 pinned GitHub invocation\n'
-          if marker not in text:
-              text = text.rstrip() + '''\n\n      - name: Prove npm 12 pinned GitHub invocation\n        shell: bash\n        env:\n          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}\n        run: |\n          set -euo pipefail\n          npm install -g npm@12 >/dev/null\n          npm --version\n          rm -rf /tmp/chatgpt-skills-npm12\n          mkdir -p /tmp/chatgpt-skills-npm12\n          cd /tmp/chatgpt-skills-npm12\n          npx --yes --allow-git=root "github:eusourmr/chatgpt-skills#$SOURCE_SHA" list | tee list.log\n          grep -q 'cs-core: cs-navigator' list.log\n'''
-              workflow.write_text(text, encoding='utf-8')
           PY
-      - name: Commit changes
+
+      - name: Prove pinned GitHub invocation on npm 12
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install -g npm@12 >/dev/null
+          npm --version
+          rm -rf /tmp/chatgpt-skills-npm12
+          mkdir -p /tmp/chatgpt-skills-npm12
+          cd /tmp/chatgpt-skills-npm12
+          npx --yes --allow-git=root github:eusourmr/chatgpt-skills#8b814c93980175fa61da141d659cfa28a8e6bd92 list | tee list.log
+          grep -q 'cs-core: cs-navigator' list.log
+
+      - name: Commit documentation changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md README.pt-BR.md docs/CHATGPT_IN_PRODUCT_TESTING.md .github/workflows/package-check.yml
-          git commit -m 'Support npm 12 Git package policy'
+          git add README.md README.pt-BR.md docs/CHATGPT_IN_PRODUCT_TESTING.md
+          git commit -m 'Document npm 12-safe Git invocation'
           git push origin HEAD:fix/npm12-git-pre-release
